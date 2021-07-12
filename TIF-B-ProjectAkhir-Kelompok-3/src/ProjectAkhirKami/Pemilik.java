@@ -80,6 +80,7 @@ public class Pemilik extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Tahoma", 2, 16)); // NOI18N
         jLabel4.setText("Ilnaa Collection");
 
+        btnLaporanPenjualan.setBackground(new java.awt.Color(231, 152, 174));
         btnLaporanPenjualan.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         btnLaporanPenjualan.setText("LAPORAN PENJUALAN");
         btnLaporanPenjualan.addActionListener(new java.awt.event.ActionListener() {
@@ -88,6 +89,7 @@ public class Pemilik extends javax.swing.JFrame {
             }
         });
 
+        btnLaporanPemasukkan.setBackground(new java.awt.Color(231, 152, 174));
         btnLaporanPemasukkan.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         btnLaporanPemasukkan.setText("LAPORAN PEMASUKAN BARANG");
         btnLaporanPemasukkan.addActionListener(new java.awt.event.ActionListener() {

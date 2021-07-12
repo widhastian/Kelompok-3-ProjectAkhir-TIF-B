@@ -492,7 +492,7 @@ public class dataBarang extends javax.swing.JFrame {
         txtNamaBarang.setText("");
         txtStok.setText("");
         txtHarga.setText("");
-        txtCari.setText("");
+       
         
     }//GEN-LAST:event_btnBersihActionPerformed
 

@@ -89,6 +89,12 @@ public class HalamanLogin extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel3.setText("PASSWORD");
 
+        txtid.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtidActionPerformed(evt);
+            }
+        });
+
         btnmasuk.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnmasuk.setForeground(new java.awt.Color(74, 28, 64));
         btnmasuk.setText("MASUK");
@@ -299,7 +305,7 @@ public class HalamanLogin extends javax.swing.JFrame {
                 
                     
                 }else{
-                     JOptionPane.showMessageDialog(rootPane, "id_user or password not matched", "login Error", 1);
+                     JOptionPane.showMessageDialog(rootPane, "ID atau Password Salah", "Login Anda Error", 1);
                     
                 }
                 
@@ -318,6 +324,10 @@ public class HalamanLogin extends javax.swing.JFrame {
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void txtidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtidActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtidActionPerformed
 
     /**
      * @param args the command line arguments

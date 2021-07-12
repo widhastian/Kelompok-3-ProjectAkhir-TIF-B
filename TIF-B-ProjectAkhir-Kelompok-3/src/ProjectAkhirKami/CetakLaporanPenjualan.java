@@ -57,6 +57,7 @@ public class CetakLaporanPenjualan extends javax.swing.JFrame {
             }
         });
 
+        btnCetak.setBackground(new java.awt.Color(231, 152, 174));
         btnCetak.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnCetak.setText("CETAK");
         btnCetak.addActionListener(new java.awt.event.ActionListener() {
