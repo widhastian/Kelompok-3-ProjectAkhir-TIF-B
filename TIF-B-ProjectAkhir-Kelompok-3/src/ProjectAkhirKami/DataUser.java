@@ -137,6 +137,7 @@ public class DataUser extends javax.swing.JFrame {
         jLabel13.setFont(new java.awt.Font("Tahoma", 2, 16)); // NOI18N
         jLabel13.setText("Ilnaa Collection");
 
+        btnCari.setBackground(new java.awt.Color(231, 152, 174));
         btnCari.setText("CARI");
 
         tabel.setModel(new javax.swing.table.DefaultTableModel(
@@ -172,6 +173,7 @@ public class DataUser extends javax.swing.JFrame {
         txtAlamat.setRows(5);
         jScrollPane3.setViewportView(txtAlamat);
 
+        btnSimpan.setBackground(new java.awt.Color(231, 152, 174));
         btnSimpan.setText("SIMPAN");
         btnSimpan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -179,6 +181,7 @@ public class DataUser extends javax.swing.JFrame {
             }
         });
 
+        btnHapus.setBackground(new java.awt.Color(231, 152, 174));
         btnHapus.setText("HAPUS");
         btnHapus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -186,12 +189,14 @@ public class DataUser extends javax.swing.JFrame {
             }
         });
 
+        btnBatal.setBackground(new java.awt.Color(231, 152, 174));
         btnBatal.setText("BATAL");
 
         jRadioButton1.setText("Laki-laki");
 
         jRadioButton2.setText("Perempuan");
 
+        jButton1.setBackground(new java.awt.Color(231, 152, 174));
         jButton1.setText("EDIT");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);

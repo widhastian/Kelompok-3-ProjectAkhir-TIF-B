@@ -298,6 +298,9 @@
         </Container>
         <Component class="javax.swing.JButton" name="btnsimpan">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ae" green="98" red="e7" type="rgb"/>
+            </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="12" style="1"/>
             </Property>
@@ -330,6 +333,9 @@
         </Container>
         <Component class="javax.swing.JButton" name="btnHapus">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ae" green="98" red="e7" type="rgb"/>
+            </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="12" style="1"/>
             </Property>
@@ -341,6 +347,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnBatal">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ae" green="98" red="e7" type="rgb"/>
+            </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="12" style="1"/>
             </Property>
@@ -352,6 +361,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnCari">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ae" green="98" red="e7" type="rgb"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="CARI"/>
           </Properties>
           <Events>
@@ -360,6 +372,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnEdit">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ae" green="98" red="e7" type="rgb"/>
+            </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="12" style="1"/>
             </Property>

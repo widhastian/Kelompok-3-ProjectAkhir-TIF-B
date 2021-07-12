@@ -270,6 +270,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnCari">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ae" green="98" red="e7" type="rgb"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="CARI"/>
           </Properties>
         </Component>
@@ -363,6 +366,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnSimpan">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ae" green="98" red="e7" type="rgb"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="SIMPAN"/>
           </Properties>
           <Events>
@@ -371,6 +377,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnHapus">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ae" green="98" red="e7" type="rgb"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="HAPUS"/>
           </Properties>
           <Events>
@@ -379,6 +388,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnBatal">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ae" green="98" red="e7" type="rgb"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="BATAL"/>
           </Properties>
         </Component>
@@ -394,6 +406,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="jButton1">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ae" green="98" red="e7" type="rgb"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="EDIT"/>
           </Properties>
         </Component>

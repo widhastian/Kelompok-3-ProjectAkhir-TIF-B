@@ -8,6 +8,7 @@ package ProjectAkhirKami;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
@@ -37,7 +38,7 @@ public class dataBarang extends javax.swing.JFrame {
     }
     public void tanggal(){
         Date tgl = new Date();
-        Tanggal.setDate(tgl);
+       // Tanggal.setDate(tgl);
     }
     public void noTable(){
         int Baris = tabmode.getRowCount();
@@ -140,7 +141,7 @@ public class dataBarang extends javax.swing.JFrame {
         txtHarga = new javax.swing.JTextField();
         txtStok = new javax.swing.JTextField();
         txtCari = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        btnCari = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabel = new javax.swing.JTable();
         btnBersih = new javax.swing.JButton();
@@ -148,10 +149,12 @@ public class dataBarang extends javax.swing.JFrame {
         btnHapus = new javax.swing.JButton();
         btnEdit = new javax.swing.JButton();
         btnKembali = new javax.swing.JButton();
-        Tanggal = new com.toedter.calendar.JDateChooser();
         labeltanggal = new javax.swing.JLabel();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jPanel1.setBackground(new java.awt.Color(246, 229, 233));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jLabel1.setText("DATA BARANG");
@@ -168,16 +171,24 @@ public class dataBarang extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setText("Stok");
 
+        txtIDBarang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtIDBarangActionPerformed(evt);
+            }
+        });
+
+        txtCari.setText("Masukkan ID Barang");
         txtCari.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCariActionPerformed(evt);
             }
         });
 
-        jButton1.setText("Cari");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnCari.setBackground(new java.awt.Color(231, 152, 174));
+        btnCari.setText("Cari");
+        btnCari.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnCariActionPerformed(evt);
             }
         });
 
@@ -194,9 +205,16 @@ public class dataBarang extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tabel);
 
+        btnBersih.setBackground(new java.awt.Color(231, 152, 174));
         btnBersih.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnBersih.setText("BERSIH");
+        btnBersih.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBersihActionPerformed(evt);
+            }
+        });
 
+        btnSimpan.setBackground(new java.awt.Color(231, 152, 174));
         btnSimpan.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnSimpan.setText("SIMPAN");
         btnSimpan.addActionListener(new java.awt.event.ActionListener() {
@@ -205,12 +223,25 @@ public class dataBarang extends javax.swing.JFrame {
             }
         });
 
+        btnHapus.setBackground(new java.awt.Color(231, 152, 174));
         btnHapus.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnHapus.setText("HAPUS");
+        btnHapus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHapusActionPerformed(evt);
+            }
+        });
 
+        btnEdit.setBackground(new java.awt.Color(231, 152, 174));
         btnEdit.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnEdit.setText("EDIT");
+        btnEdit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditActionPerformed(evt);
+            }
+        });
 
+        btnKembali.setBackground(new java.awt.Color(231, 152, 174));
         btnKembali.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnKembali.setText("KEMBALI");
         btnKembali.addActionListener(new java.awt.event.ActionListener() {
@@ -222,6 +253,8 @@ public class dataBarang extends javax.swing.JFrame {
         labeltanggal.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         labeltanggal.setText("Tanggal");
 
+        jDateChooser1.setBackground(new java.awt.Color(231, 152, 174));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -230,7 +263,7 @@ public class dataBarang extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(txtCari, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
+                .addComponent(btnCari)
                 .addGap(46, 46, 46))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(22, 22, 22)
@@ -248,10 +281,10 @@ public class dataBarang extends javax.swing.JFrame {
                                 .addComponent(labeltanggal))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(txtIDBarang)
+                                .addComponent(txtIDBarang, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE)
                                 .addComponent(txtNamaBarang)
                                 .addComponent(txtHarga)
-                                .addComponent(Tanggal, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(49, 49, 49)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -284,7 +317,7 @@ public class dataBarang extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(txtCari, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jButton1))
+                                .addComponent(btnCari))
                             .addComponent(labeltanggal))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -317,7 +350,7 @@ public class dataBarang extends javax.swing.JFrame {
                                     .addComponent(btnEdit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(35, 35, 35))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(Tanggal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
 
@@ -339,9 +372,38 @@ public class dataBarang extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCariActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCariActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+         try{
+        com.mysql.jdbc.Statement statement = (com.mysql.jdbc.Statement) Connectionz.GetConnection().createStatement();
+        ResultSet res = statement.executeQuery ("select * from tblbarang where "
+                    + "id_barang='" + txtCari.getText() + "'");
+        DefaultTableModel tb1 = new DefaultTableModel();
+        tb1.addColumn("ID Barang");
+        tb1.addColumn("Nama Barang");
+        tb1.addColumn("Harga Satuan");
+        tb1.addColumn("Stok");
+
+      
+        
+        tabel.setModel(tb1);
+        
+        while (res.next()){
+            tb1.addRow(new Object[]{
+                    res.getString("id_barang"),
+                    res.getString("nama_barang"),
+                    res.getString("harga_satuan"),
+                    res.getString("stok"),
+
+                    
+            });
+            tabel.setModel(tb1);
+    }
+    
+    }catch(Exception e){
+      JOptionPane.showMessageDialog(rootPane, "Salah!!!");
+    }
+    }//GEN-LAST:event_btnCariActionPerformed
 
     private void btnKembaliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKembaliActionPerformed
         // TODO add your handling code here:
@@ -381,6 +443,59 @@ public class dataBarang extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnSimpanActionPerformed
 
+    private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
+        
+        String harga = txtHarga.getText();
+        String idBarang = txtIDBarang.getText();
+        String namaBarang = txtNamaBarang.getText();
+        String stok = txtStok.getText();
+
+        
+        
+        try{
+        Statement statement = (Statement) Connectionz.GetConnection().createStatement();
+        statement.executeUpdate("update tblbarang set nama_barang = '"+namaBarang+"' , stok= '"+stok+"', harga_satuan= '"+harga+"' where id_barang = '"+idBarang+"' ");
+        statement.close();
+            JOptionPane.showMessageDialog(null, " Data Berhasil Diubah");
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, " Data Gagal Dubah");
+        }
+        datatable();
+    }//GEN-LAST:event_btnEditActionPerformed
+
+    private void txtIDBarangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDBarangActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtIDBarangActionPerformed
+
+    private void btnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusActionPerformed
+        // TODO add your handling code here:
+        String idBarang = txtIDBarang.getText();
+      try{
+          com.mysql.jdbc.Statement statement = (com.mysql.jdbc.Statement)Connectionz.GetConnection().createStatement();
+          statement.executeUpdate("DELETE from tblbarang where id_barang =('" + idBarang + "');");
+          JOptionPane.showMessageDialog(null, "Data berhasil dihapus");
+         
+          txtIDBarang.setText("");
+          txtNamaBarang.setText("");
+          txtStok.setText("");
+          txtHarga.setText("");
+          txtIDBarang.requestFocus();
+      }catch(Exception e){
+          JOptionPane.showMessageDialog(null, " Data gagal dihapus");
+      }
+      datatable();
+    }//GEN-LAST:event_btnHapusActionPerformed
+
+    private void btnBersihActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBersihActionPerformed
+        // TODO add your handling code here:
+         txtIDBarang.setText("");
+        txtNamaBarang.setText("");
+        txtStok.setText("");
+        txtHarga.setText("");
+        txtCari.setText("");
+        
+    }//GEN-LAST:event_btnBersihActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -418,13 +533,13 @@ public class dataBarang extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.toedter.calendar.JDateChooser Tanggal;
     private javax.swing.JButton btnBersih;
+    private javax.swing.JButton btnCari;
     private javax.swing.JButton btnEdit;
     private javax.swing.JButton btnHapus;
     private javax.swing.JButton btnKembali;
     private javax.swing.JButton btnSimpan;
-    private javax.swing.JButton jButton1;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

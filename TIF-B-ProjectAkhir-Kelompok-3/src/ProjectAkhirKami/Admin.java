@@ -109,6 +109,7 @@ public Admin(String username) {
         jLabel4.setFont(new java.awt.Font("Tahoma", 2, 16)); // NOI18N
         jLabel4.setText("Ilnaa Collection");
 
+        btnTransaksiMasuk.setBackground(new java.awt.Color(231, 152, 174));
         btnTransaksiMasuk.setFont(new java.awt.Font("Tahoma", 1, 39)); // NOI18N
         btnTransaksiMasuk.setText("Transaksi Barang Masuk");
         btnTransaksiMasuk.addActionListener(new java.awt.event.ActionListener() {

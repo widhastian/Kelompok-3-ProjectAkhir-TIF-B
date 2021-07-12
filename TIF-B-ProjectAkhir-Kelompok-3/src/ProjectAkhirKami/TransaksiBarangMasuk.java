@@ -266,6 +266,7 @@ public class TransaksiBarangMasuk extends javax.swing.JFrame {
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel10.setText("ID User");
 
+        btnBersih.setBackground(new java.awt.Color(231, 152, 174));
         btnBersih.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnBersih.setText("BERSIH");
         btnBersih.addActionListener(new java.awt.event.ActionListener() {
@@ -274,9 +275,16 @@ public class TransaksiBarangMasuk extends javax.swing.JFrame {
             }
         });
 
+        btnEdit.setBackground(new java.awt.Color(231, 152, 174));
         btnEdit.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnEdit.setText("EDIT");
+        btnEdit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditActionPerformed(evt);
+            }
+        });
 
+        tabel.setBackground(new java.awt.Color(231, 152, 174));
         tabel.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -290,6 +298,7 @@ public class TransaksiBarangMasuk extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tabel);
 
+        btnCari.setBackground(new java.awt.Color(231, 152, 174));
         btnCari.setText("CARI");
         btnCari.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -534,6 +543,11 @@ public class TransaksiBarangMasuk extends javax.swing.JFrame {
                   JOptionPane.showMessageDialog(rootPane, "salah");
         }
     }//GEN-LAST:event_btnCariActionPerformed
+
+    private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_btnEditActionPerformed
 
     /**
      * @param args the command line arguments

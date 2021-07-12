@@ -138,6 +138,7 @@ public class DataSuplier extends javax.swing.JFrame {
         txtAlamat.setRows(5);
         jScrollPane2.setViewportView(txtAlamat);
 
+        btnsimpan.setBackground(new java.awt.Color(231, 152, 174));
         btnsimpan.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnsimpan.setText("SIMPAN");
         btnsimpan.addActionListener(new java.awt.event.ActionListener() {
@@ -159,6 +160,7 @@ public class DataSuplier extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tabel);
 
+        btnHapus.setBackground(new java.awt.Color(231, 152, 174));
         btnHapus.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnHapus.setText("HAPUS");
         btnHapus.addActionListener(new java.awt.event.ActionListener() {
@@ -167,6 +169,7 @@ public class DataSuplier extends javax.swing.JFrame {
             }
         });
 
+        btnBatal.setBackground(new java.awt.Color(231, 152, 174));
         btnBatal.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnBatal.setText("BATAL");
         btnBatal.addActionListener(new java.awt.event.ActionListener() {
@@ -175,6 +178,7 @@ public class DataSuplier extends javax.swing.JFrame {
             }
         });
 
+        btnCari.setBackground(new java.awt.Color(231, 152, 174));
         btnCari.setText("CARI");
         btnCari.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -182,6 +186,7 @@ public class DataSuplier extends javax.swing.JFrame {
             }
         });
 
+        btnEdit.setBackground(new java.awt.Color(231, 152, 174));
         btnEdit.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnEdit.setText("EDIT");
         btnEdit.addActionListener(new java.awt.event.ActionListener() {
