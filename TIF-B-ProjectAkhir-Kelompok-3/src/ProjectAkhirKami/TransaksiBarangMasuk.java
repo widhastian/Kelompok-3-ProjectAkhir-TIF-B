@@ -205,7 +205,7 @@ public class TransaksiBarangMasuk extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 39)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(74, 28, 64));
-        jLabel1.setText("FORM BARANG");
+        jLabel1.setText("FORM BARANG MASUK");
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setText("ID Pemasukan");
