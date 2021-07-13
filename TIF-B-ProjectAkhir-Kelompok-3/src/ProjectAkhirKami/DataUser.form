@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+  <NonVisualComponents>
+    <Component class="javax.swing.ButtonGroup" name="btnGrp">
+    </Component>
+  </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
   </Properties>
@@ -76,17 +80,15 @@
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="btnCari" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="txtIDUser" max="32767" attributes="0"/>
-                                  <Component id="txtNamaDepan" max="32767" attributes="0"/>
-                                  <Component id="txtNamaBelakang" max="32767" attributes="0"/>
-                                  <Component id="jScrollPane3" max="32767" attributes="0"/>
-                                  <Component id="txtLevel" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="txtPassword" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="rbtnL" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="rbtnP" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="txtNoHp" max="32767" attributes="0"/>
-                              </Group>
+                              <Component id="txtIDUser" max="32767" attributes="0"/>
+                              <Component id="txtNamaDepan" max="32767" attributes="0"/>
+                              <Component id="txtNamaBelakang" max="32767" attributes="0"/>
+                              <Component id="jScrollPane3" max="32767" attributes="0"/>
+                              <Component id="txtLevel" alignment="0" max="32767" attributes="0"/>
+                              <Component id="txtPassword" alignment="0" max="32767" attributes="0"/>
+                              <Component id="rbtnL" alignment="0" max="32767" attributes="0"/>
+                              <Component id="txtNoHp" max="32767" attributes="0"/>
+                              <Component id="rbtnP" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                           <Component id="jScrollPane2" min="-2" pref="833" max="-2" attributes="0"/>
@@ -401,6 +403,9 @@
         </Component>
         <Component class="javax.swing.JRadioButton" name="rbtnL">
           <Properties>
+            <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+              <ComponentRef name="btnGrp"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Laki-laki"/>
           </Properties>
           <Events>
@@ -409,6 +414,9 @@
         </Component>
         <Component class="javax.swing.JRadioButton" name="rbtnP">
           <Properties>
+            <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+              <ComponentRef name="btnGrp"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Perempuan"/>
           </Properties>
           <Events>

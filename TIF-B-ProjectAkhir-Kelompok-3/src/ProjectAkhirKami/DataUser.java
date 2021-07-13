@@ -19,6 +19,39 @@ import koneksi.Connectionz;
  */
 public class DataUser extends javax.swing.JFrame {
 
+    private void kosongkanForm(){
+    txtIDUser.setEditable(true);
+          txtNamaDepan.setText("");
+          txtNamaBelakang.setText("");
+          btnGrp.clearSelection();
+          txtNoHp.setText("");
+          txtAlamat.setText("");
+          txtLevel.setText("");
+          txtPassword.setText("");
+          txtIDUser.requestFocus();
+    
+    }
+    
+    private void tampilData(){
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("id_user");
+        model.addColumn("nama_depan");
+        model.addColumn("nama_belakang");
+        model.addColumn("jneis_kelamin");
+        model.addColumn("no_hp");
+        model.addColumn("alamat");
+        model.addColumn("level");
+        model.addColumn("password");
+        try {
+        int no =1;
+        String sql = "SELECT * from tbluser WHERE id_user like '%"
+                + txtcari.getText() + "%'"
+                + "or nama_depan like '%" + txtcari.getText() + "%'";;
+                
+        java.sql.Connection conn = (Connection) Connectionz.configDB();
+        
+        }
+    }
     /**
      * Creates new form DataUser
      */
@@ -68,6 +101,7 @@ public class DataUser extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btnGrp = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         btnBackUser = new javax.swing.JButton();
@@ -215,6 +249,7 @@ public class DataUser extends javax.swing.JFrame {
             }
         });
 
+        btnGrp.add(rbtnL);
         rbtnL.setText("Laki-laki");
         rbtnL.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -222,6 +257,7 @@ public class DataUser extends javax.swing.JFrame {
             }
         });
 
+        btnGrp.add(rbtnP);
         rbtnP.setText("Perempuan");
         rbtnP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -270,16 +306,15 @@ public class DataUser extends javax.swing.JFrame {
                                 .addComponent(txtcari)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnCari))
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(txtIDUser)
-                                .addComponent(txtNamaDepan)
-                                .addComponent(txtNamaBelakang)
-                                .addComponent(jScrollPane3)
-                                .addComponent(txtLevel)
-                                .addComponent(txtPassword)
-                                .addComponent(rbtnL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(rbtnP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtNoHp)))
+                            .addComponent(txtIDUser)
+                            .addComponent(txtNamaDepan)
+                            .addComponent(txtNamaBelakang)
+                            .addComponent(jScrollPane3)
+                            .addComponent(txtLevel)
+                            .addComponent(txtPassword)
+                            .addComponent(rbtnL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtNoHp)
+                            .addComponent(rbtnP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(27, 27, 27)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 833, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -405,7 +440,7 @@ public class DataUser extends javax.swing.JFrame {
         String  id_user = txtIDUser.getText();
         String nama_depan = txtNamaDepan.getText();
         String nama_belakang = txtNamaBelakang.getText();
-        String jenis_kelamin = null;
+        //String jenis_kelamin = btnGrp.clearSelection();
         String no_hp = txtNoHp.getText();
         String alamat = txtLevel.getText();
         String Level = txtLevel.getText();
@@ -459,37 +494,57 @@ public class DataUser extends javax.swing.JFrame {
     private void btUsrEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btUsrEditActionPerformed
         // TODO add your handling code here:
                 
-        String idUser = txtIDUser.getText();
+       /* String idUser = txtIDUser.getText();
         String fName = txtNamaDepan.getText();
         String lName = txtNamaBelakang.getText();
         String noHp = txtNoHp.getText();
         String alamat = txtAlamat.getText();
         String level = txtLevel.getText();
-        String password = txtPassword.getText();
+        String password = txtPassword.getText();*/
         
         
-        try{
+        /*try{
         java.sql.Statement statement = (java.sql.Statement) Connectionz.GetConnection().createStatement();
         statement.executeUpdate("update tbluser set nama_depan = '"+fName+"' , nama_belakang= '"+lName+"', no_hp= '"+noHp+"', alamat=c'"+alamat+"', level= '"+level+"', password='"+password+"' where id_user = '"+idUser+"' ");
         statement.close();
             JOptionPane.showMessageDialog(null, " Data Berhasil Diubah");
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, " Data Gagal Dubah");
+        }*/
+        
+         String sql="update tbluser set id_user='"+ txtIDUser.getText()+
+                "',nama_depan='"+txtNamaDepan.getText()+
+                 "',nama_belakang='"+txtNamaBelakang.getText()+
+                 "',no_hp='"+txtNoHp.getText()+
+                 "',alamat='"+txtAlamat.getText()+
+                //"',jenis_kelamin='"+ jComboBox1.getSelected()+
+
+                "'where id_user='"+txtIDUser.getText()+"'";
+        if(txtIDUser.getText().trim().equals("")){
+            JOptionPane.showMessageDialog(null,"Data masih kosong!","Edit Data",JOptionPane.WARNING_MESSAGE);
+            txtIDUser.requestFocus();
+            }
+        else{
+            try{
+                Statement statement=(Statement) Connectionz.GetConnection().createStatement();
+                statement.executeUpdate(sql);
+                JOptionPane.showMessageDialog(null,"Data Sudah diedit","Edit Data",JOptionPane.WARNING_MESSAGE);
+                statement.close();
+                //conec.close();
+                txtIDUser.requestFocus();
+                              
+            }
+            catch (Exception exc) {
+                System.err.println("Error:"+exc);
+            }
+        
         }
-        datatable();
+        
     }//GEN-LAST:event_btUsrEditActionPerformed
 
     private void txtNoHpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNoHpActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNoHpActionPerformed
-
-    private void rbtnLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnLActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_rbtnLActionPerformed
-
-    private void rbtnPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnPActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_rbtnPActionPerformed
 
     private void btnCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCariActionPerformed
         // TODO add your handling code here:
@@ -549,6 +604,14 @@ public class DataUser extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtcariActionPerformed
 
+    private void rbtnPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnPActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rbtnPActionPerformed
+
+    private void rbtnLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnLActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rbtnLActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -589,6 +652,7 @@ public class DataUser extends javax.swing.JFrame {
     private javax.swing.JButton btnBackUser;
     private javax.swing.JButton btnBatal;
     private javax.swing.JButton btnCari;
+    private javax.swing.ButtonGroup btnGrp;
     private javax.swing.JButton btnHapus;
     private javax.swing.JButton btnSimpan;
     private javax.swing.JButton btnTambah;

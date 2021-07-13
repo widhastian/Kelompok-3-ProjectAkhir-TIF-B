@@ -337,7 +337,7 @@ public class DataSuplier extends javax.swing.JFrame {
 
     private void btnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusActionPerformed
         // TODO add your handling code here:
-        String idsup = txtcari.getText();
+        String idsup = txtIDSuplier.getText();
         try {
             Statement statement = (Statement)Connectionz.GetConnection() .createStatement();
             statement.executeUpdate("DELETE from tblsuplier where id_suplier=('" +idsup+ "');");
@@ -399,6 +399,24 @@ public class DataSuplier extends javax.swing.JFrame {
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
         // TODO add your handling code here:
+        
+         
+        String idSuplier = txtIDSuplier.getText();
+        String namaPerusahaan = txtNamaPerusahaan.getText();
+        String noHp = txtNoHp.getText();
+        String alamatSuplier = txtAlamat.getText();
+
+        
+        
+        try{
+        java.sql.Statement statement = (java.sql.Statement) Connectionz.GetConnection().createStatement();
+        statement.executeUpdate("update tblsuplier set nama_perusahaan = '"+namaPerusahaan+"' , no_hp= '"+noHp+"', alamat= '"+alamatSuplier+"' where id_suplier = '"+idSuplier+"' ");
+        statement.close();
+            JOptionPane.showMessageDialog(null, " Data Berhasil Diubah");
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, " Data Gagal Dubah");
+        }
+        datatable();
     }//GEN-LAST:event_btnEditActionPerformed
 
     /**
