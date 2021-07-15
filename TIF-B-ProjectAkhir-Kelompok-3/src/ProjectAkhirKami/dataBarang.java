@@ -253,6 +253,11 @@ public class dataBarang extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabelMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tabel);
 
         btnBersih.setBackground(new java.awt.Color(231, 152, 174));
@@ -440,25 +445,28 @@ public class dataBarang extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, " Data Gagal Dubah");
         }
         datatable();
+        lebarKolom();
     }//GEN-LAST:event_btnEditActionPerformed
 
     private void btnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusActionPerformed
         // TODO add your handling code here:
-        String idBarang = txtIDBarang.getText();
-        try{
-            com.mysql.jdbc.Statement statement = (com.mysql.jdbc.Statement)Connectionz.GetConnection().createStatement();
-            statement.executeUpdate("DELETE from tblbarang where id_barang =('" + idBarang + "');");
-            JOptionPane.showMessageDialog(null, "Data berhasil dihapus");
-
-            txtIDBarang.setText("");
-            txtNamaBarang.setText("");
-            txtStok.setText("");
-            txtHarga.setText("");
-            txtIDBarang.requestFocus();
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(null, " Data gagal dihapus");
+        int ok = JOptionPane.showConfirmDialog(null, " Apakah Anda Yakin Ingin "
+                + "Menghapus Data", "Konfirmasi Dialog", JOptionPane.YES_NO_OPTION);
+        if (ok == 0) {
+            String sql = "delete from tblbarang where id_barang='" + txtIDBarang.getText() + "'";
+            try {
+                PreparedStatement stat = Connectionz.GetConnection().prepareStatement(sql);
+                stat.executeUpdate();
+                JOptionPane.showMessageDialog(null, "Data Berhasil Dihapus");
+                kosong();
+                autoIdBarang();
+                datatable();
+                lebarKolom();
+                txtIDBarang.requestFocus();
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(null, "Data Gagal Dihapus" + e);
+            }
         }
-        datatable();
     }//GEN-LAST:event_btnHapusActionPerformed
 
     private void btnTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahActionPerformed
@@ -490,8 +498,6 @@ public class dataBarang extends javax.swing.JFrame {
                 kosong();
                 datatable();
                 lebarKolom();
-                txtIDBarang.setEnabled(false);
-                txtNamaBarang.setEnabled(false);
                 txtIDBarang.requestFocus();
             } catch (SQLException e) {
                 JOptionPane.showMessageDialog(null, "Data Gagal Disimpan" + e);
@@ -543,6 +549,15 @@ public class dataBarang extends javax.swing.JFrame {
     private void txtIDBarangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDBarangActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtIDBarangActionPerformed
+
+    private void tabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelMouseClicked
+        // TODO add your handling code here:
+        int bar = tabel.getSelectedRow();
+        String a = tabmode.getValueAt(bar, 0).toString();
+        String b = tabmode.getValueAt(bar, 1).toString();
+        txtIDBarang.setText(b);
+        txtIDBarang.requestFocus();
+    }//GEN-LAST:event_tabelMouseClicked
 
     /**
      * @param args the command line arguments
