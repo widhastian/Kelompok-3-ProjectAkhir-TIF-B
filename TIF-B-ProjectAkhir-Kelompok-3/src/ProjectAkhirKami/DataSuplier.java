@@ -6,6 +6,7 @@
 package ProjectAkhirKami;
 
 import com.mysql.jdbc.Statement;
+import java.sql.Connection;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -48,7 +49,34 @@ public class DataSuplier extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "salah");
         }
     }
-
+private void autoIDSuplier() {
+        try {
+            Connection con = new Connectionz().GetConnection();
+            java.sql.Statement stat = con.createStatement();
+            String sql = "select max(right (id_suplier,3)) as no from tblsuplier";
+            ResultSet res = stat.executeQuery(sql);
+            while (res.next()) {
+                if (res.first() == false) {
+                    txtIDSuplier.setText("S-0001");
+                } else {
+                    res.last();
+                    int aut_id = res.getInt(1) + 1;
+                    String no = String.valueOf(aut_id);
+                    int no_sup = no.length();
+                    // mengatur jumlah 0
+                    for (int j = 0; j < 3 - no_sup; j++) {
+                        no = "0" + no;
+                    }
+                    txtIDSuplier.setText("S-" + no);
+                }
+            }
+            res.close();
+            stat.close();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Terjadi Kesalahan");
+        }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
