@@ -5,6 +5,7 @@
  */
 package ProjectAkhirKami;
 
+import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -50,11 +51,11 @@ public class HalamanLogin extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         txtid = new javax.swing.JTextField();
-        txtpassword = new javax.swing.JTextField();
         btnmasuk = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
         jButton3 = new javax.swing.JButton();
+        txtpassword = new javax.swing.JPasswordField();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -94,6 +95,11 @@ public class HalamanLogin extends javax.swing.JFrame {
                 txtidActionPerformed(evt);
             }
         });
+        txtid.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtidKeyTyped(evt);
+            }
+        });
 
         btnmasuk.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnmasuk.setForeground(new java.awt.Color(74, 28, 64));
@@ -122,6 +128,17 @@ public class HalamanLogin extends javax.swing.JFrame {
             }
         });
 
+        txtpassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtpasswordActionPerformed(evt);
+            }
+        });
+        txtpassword.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtpasswordKeyTyped(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -139,8 +156,8 @@ public class HalamanLogin extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton3))
                     .addComponent(txtid, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txtpassword, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.TRAILING, 0, 248, Short.MAX_VALUE))
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.TRAILING, 0, 248, Short.MAX_VALUE)
+                    .addComponent(txtpassword))
                 .addGap(32, 32, 32))
         );
         jPanel4Layout.setVerticalGroup(
@@ -152,8 +169,8 @@ public class HalamanLogin extends javax.swing.JFrame {
                     .addComponent(txtid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtpassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
+                    .addComponent(jLabel3)
+                    .addComponent(txtpassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(23, 23, 23)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
@@ -162,7 +179,7 @@ public class HalamanLogin extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnmasuk, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(154, Short.MAX_VALUE))
+                .addContainerGap(159, Short.MAX_VALUE))
         );
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 2, 16)); // NOI18N
@@ -206,7 +223,7 @@ public class HalamanLogin extends javax.swing.JFrame {
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel7)
-                .addGap(8, 26, Short.MAX_VALUE))
+                .addGap(8, 33, Short.MAX_VALUE))
             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
@@ -272,7 +289,7 @@ public class HalamanLogin extends javax.swing.JFrame {
         String level= jComboBox1.getSelectedItem().toString();
         
         if(id_user.equals("")|| password.equals("")|| level.equals("Select")){
-            JOptionPane.showMessageDialog(rootPane, "Some Fields Are Empty", "Error", 1);
+            JOptionPane.showMessageDialog(rootPane, "Data tidak boleh kosong", "Error", 1);
            
         }else{
             try{
@@ -329,6 +346,20 @@ public class HalamanLogin extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtidActionPerformed
 
+    private void txtidKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtidKeyTyped
+        // TODO add your handling code here:
+        filterangka(evt);
+    }//GEN-LAST:event_txtidKeyTyped
+
+    private void txtpasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtpasswordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtpasswordActionPerformed
+
+    private void txtpasswordKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtpasswordKeyTyped
+        // TODO add your handling code here:
+        filterhuruf(evt);
+    }//GEN-LAST:event_txtpasswordKeyTyped
+
     /**
      * @param args the command line arguments
      */
@@ -382,6 +413,22 @@ public class HalamanLogin extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JTextField txtid;
-    private javax.swing.JTextField txtpassword;
+    private javax.swing.JPasswordField txtpassword;
     // End of variables declaration//GEN-END:variables
+
+    private void filterangka(KeyEvent a) {
+        if (Character.isAlphabetic(a.getKeyChar())){
+            a.consume();
+            JOptionPane.showMessageDialog(null,"hanya boleh angka");
+        }
+    }
+
+    private void filterhuruf(KeyEvent b) {
+        if (Character.isDigit(b.getKeyChar())){
+            b.consume();
+            JOptionPane.showMessageDialog(null,"hanya boleh huruf");
+        }
+           
+        
+    }
 }
