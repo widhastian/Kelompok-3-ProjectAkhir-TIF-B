@@ -32,26 +32,7 @@ public class DataUser extends javax.swing.JFrame {
     
     }
     
-    private void tampilData(){
-        DefaultTableModel model = new DefaultTableModel();
-        model.addColumn("id_user");
-        model.addColumn("nama_depan");
-        model.addColumn("nama_belakang");
-        model.addColumn("jneis_kelamin");
-        model.addColumn("no_hp");
-        model.addColumn("alamat");
-        model.addColumn("level");
-        model.addColumn("password");
-        try {
-        int no =1;
-        String sql = "SELECT * from tbluser WHERE id_user like '%"
-                + txtcari.getText() + "%'"
-                + "or nama_depan like '%" + txtcari.getText() + "%'";;
-                
-        java.sql.Connection conn = (Connection) Connectionz.configDB();
-        
-        }
-    }
+
     /**
      * Creates new form DataUser
      */
@@ -132,9 +113,8 @@ public class DataUser extends javax.swing.JFrame {
         btnSimpan = new javax.swing.JButton();
         btnHapus = new javax.swing.JButton();
         btnBatal = new javax.swing.JButton();
-        rbtnL = new javax.swing.JRadioButton();
-        rbtnP = new javax.swing.JRadioButton();
         btUsrEdit = new javax.swing.JButton();
+        jComboBox1 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -249,22 +229,6 @@ public class DataUser extends javax.swing.JFrame {
             }
         });
 
-        btnGrp.add(rbtnL);
-        rbtnL.setText("Laki-laki");
-        rbtnL.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbtnLActionPerformed(evt);
-            }
-        });
-
-        btnGrp.add(rbtnP);
-        rbtnP.setText("Perempuan");
-        rbtnP.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbtnPActionPerformed(evt);
-            }
-        });
-
         btUsrEdit.setBackground(new java.awt.Color(231, 152, 174));
         btUsrEdit.setText("EDIT");
         btUsrEdit.addActionListener(new java.awt.event.ActionListener() {
@@ -272,6 +236,8 @@ public class DataUser extends javax.swing.JFrame {
                 btUsrEditActionPerformed(evt);
             }
         });
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Laki-laki", "Perempuan" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -312,9 +278,8 @@ public class DataUser extends javax.swing.JFrame {
                             .addComponent(jScrollPane3)
                             .addComponent(txtLevel)
                             .addComponent(txtPassword)
-                            .addComponent(rbtnL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(txtNoHp)
-                            .addComponent(rbtnP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(27, 27, 27)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 833, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -360,13 +325,11 @@ public class DataUser extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
                             .addComponent(txtNamaBelakang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6)
-                            .addComponent(rbtnL))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(rbtnP)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(43, 43, 43)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtNoHp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel7))
@@ -421,13 +384,7 @@ public class DataUser extends javax.swing.JFrame {
         txtIDUser.setText("");
         txtNamaDepan.setText("");
         txtNamaBelakang.setText("");
-        if (rbtnL.isSelected()){
-            JOptionPane.showMessageDialog(rootPane, "Laki-laki");
-            
-        }else if (rbtnP.isSelected()){
-            JOptionPane.showMessageDialog(rootPane, "Perempuan");
-        }
-        
+    jComboBox1.setSelectedItem("");
         txtNoHp.setText("");
         txtLevel.setText("");
         txtPassword.setText("");
@@ -437,30 +394,34 @@ public class DataUser extends javax.swing.JFrame {
 
     private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanActionPerformed
         // TODO add your handling code here:
-        String  id_user = txtIDUser.getText();
-        String nama_depan = txtNamaDepan.getText();
-        String nama_belakang = txtNamaBelakang.getText();
-        //String jenis_kelamin = btnGrp.clearSelection();
-        String no_hp = txtNoHp.getText();
-        String alamat = txtLevel.getText();
-        String Level = txtLevel.getText();
-        String password = txtPassword.getText();
-        
-        
-        if (rbtnL.isSelected()){
-            jenis_kelamin="Laki-laki";
-        }else if (rbtnP.isSelected()){
-                    }
-          try {
-                Statement statement  = (Statement) Connectionz.GetConnection().createStatement();
-                statement.executeUpdate("INSERT INTO tbluser VALUE ('" + id_user + "','" + nama_depan + "','" + nama_belakang + "','" + jenis_kelamin+ "','" + no_hp + "','" +alamat+ "','" +Level+ "','" +password+ "');");
-           statement.close();
-           JOptionPane.showMessageDialog(null, "data berhasil disimpan");
-            }catch (Exception e){
-                JOptionPane.showMessageDialog(null, "data berhasil di simpan");
+       String sql="UPDATE tbluser SET id_user='"+ txtIDUser.getText()+
+                "',nama_depan='"+txtNamaDepan.getText()+
+                 "',nama_belakang='"+txtNamaBelakang.getText()+
+                 "',no_hp='"+txtNoHp.getText()+
+                 "',alamat='"+txtAlamat.getText()+
+                "',jenis_kelamin='"+ jComboBox1.getSelectedItem()+
+
+                "'where id_user='"+txtIDUser.getText()+"'";
+        if(txtIDUser.getText().trim().equals("")){
+            JOptionPane.showMessageDialog(null,"Data Gagal di Edit!","Edit Data",JOptionPane.WARNING_MESSAGE);
+            txtIDUser.requestFocus();
             }
-            datatable();
+        else{
+            try{
+                Statement statement=(Statement) Connectionz.GetConnection().createStatement();
+                statement.executeUpdate(sql);
+                JOptionPane.showMessageDialog(null,"Data Berhasil diEdit","Edit Data",JOptionPane.WARNING_MESSAGE);
+                statement.close();
+                //conec.close();
+                txtIDUser.requestFocus();
+                              
+            }
+            catch (Exception exc) {
+                System.err.println("Error:"+exc);
+            }
         
+        }
+         datatable();
                             
  
        
@@ -492,26 +453,7 @@ public class DataUser extends javax.swing.JFrame {
     }//GEN-LAST:event_btnHapusActionPerformed
 
     private void btUsrEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btUsrEditActionPerformed
-        // TODO add your handling code here:
-                
-       /* String idUser = txtIDUser.getText();
-        String fName = txtNamaDepan.getText();
-        String lName = txtNamaBelakang.getText();
-        String noHp = txtNoHp.getText();
-        String alamat = txtAlamat.getText();
-        String level = txtLevel.getText();
-        String password = txtPassword.getText();*/
-        
-        
-        /*try{
-        java.sql.Statement statement = (java.sql.Statement) Connectionz.GetConnection().createStatement();
-        statement.executeUpdate("update tbluser set nama_depan = '"+fName+"' , nama_belakang= '"+lName+"', no_hp= '"+noHp+"', alamat=c'"+alamat+"', level= '"+level+"', password='"+password+"' where id_user = '"+idUser+"' ");
-        statement.close();
-            JOptionPane.showMessageDialog(null, " Data Berhasil Diubah");
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(null, " Data Gagal Dubah");
-        }*/
-        
+   
          String sql="update tbluser set id_user='"+ txtIDUser.getText()+
                 "',nama_depan='"+txtNamaDepan.getText()+
                  "',nama_belakang='"+txtNamaBelakang.getText()+
@@ -537,6 +479,7 @@ public class DataUser extends javax.swing.JFrame {
             catch (Exception exc) {
                 System.err.println("Error:"+exc);
             }
+            datatable();
         
         }
         
@@ -604,14 +547,6 @@ public class DataUser extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtcariActionPerformed
 
-    private void rbtnPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnPActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_rbtnPActionPerformed
-
-    private void rbtnLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnLActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_rbtnLActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -656,6 +591,7 @@ public class DataUser extends javax.swing.JFrame {
     private javax.swing.JButton btnHapus;
     private javax.swing.JButton btnSimpan;
     private javax.swing.JButton btnTambah;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;
@@ -671,8 +607,6 @@ public class DataUser extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JRadioButton rbtnL;
-    private javax.swing.JRadioButton rbtnP;
     private javax.swing.JTable tabel;
     private javax.swing.JTextArea txtAlamat;
     private javax.swing.JTextField txtIDUser;
