@@ -336,6 +336,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtIDUser">
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtIDUserKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txtNamaDepan">
         </Component>
@@ -364,6 +367,9 @@
         <Component class="javax.swing.JTextField" name="txtLevel">
         </Component>
         <Component class="javax.swing.JTextField" name="txtPassword">
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtPasswordKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnSimpan">
           <Properties>

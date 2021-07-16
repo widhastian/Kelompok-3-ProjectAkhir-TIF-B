@@ -419,14 +419,14 @@ public class HalamanLogin extends javax.swing.JFrame {
     private void filterangka(KeyEvent a) {
         if (Character.isAlphabetic(a.getKeyChar())){
             a.consume();
-            JOptionPane.showMessageDialog(null,"hanya boleh angka");
+            JOptionPane.showMessageDialog(null,"Hanya boleh angka");
         }
     }
 
     private void filterhuruf(KeyEvent b) {
         if (Character.isDigit(b.getKeyChar())){
             b.consume();
-            JOptionPane.showMessageDialog(null,"hanya boleh huruf");
+            JOptionPane.showMessageDialog(null,"Hanya boleh huruf");
         }
            
         

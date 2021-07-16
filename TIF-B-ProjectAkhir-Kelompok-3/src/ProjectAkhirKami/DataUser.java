@@ -6,6 +6,7 @@
 package ProjectAkhirKami;
 
 import com.mysql.jdbc.Statement;
+import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -19,7 +20,7 @@ import koneksi.Connectionz;
  */
 public class DataUser extends javax.swing.JFrame {
 
-    private void kosongkanForm(){
+    private void kosongkan_Form(){
     txtIDUser.setEditable(true);
           txtNamaDepan.setText("");
           txtNamaBelakang.setText("");
@@ -195,6 +196,12 @@ public class DataUser extends javax.swing.JFrame {
 
         jLabel10.setText("Password");
 
+        txtIDUser.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtIDUserKeyTyped(evt);
+            }
+        });
+
         txtNoHp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNoHpActionPerformed(evt);
@@ -204,6 +211,12 @@ public class DataUser extends javax.swing.JFrame {
         txtAlamat.setColumns(20);
         txtAlamat.setRows(5);
         jScrollPane3.setViewportView(txtAlamat);
+
+        txtPassword.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPasswordKeyTyped(evt);
+            }
+        });
 
         btnSimpan.setBackground(new java.awt.Color(231, 152, 174));
         btnSimpan.setText("SIMPAN");
@@ -394,34 +407,30 @@ public class DataUser extends javax.swing.JFrame {
 
     private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanActionPerformed
         // TODO add your handling code here:
-       String sql="UPDATE tbluser SET id_user='"+ txtIDUser.getText()+
-                "',nama_depan='"+txtNamaDepan.getText()+
-                 "',nama_belakang='"+txtNamaBelakang.getText()+
-                 "',no_hp='"+txtNoHp.getText()+
-                 "',alamat='"+txtAlamat.getText()+
-                "',jenis_kelamin='"+ jComboBox1.getSelectedItem()+
-
-                "'where id_user='"+txtIDUser.getText()+"'";
-        if(txtIDUser.getText().trim().equals("")){
-            JOptionPane.showMessageDialog(null,"Data Gagal di Edit!","Edit Data",JOptionPane.WARNING_MESSAGE);
-            txtIDUser.requestFocus();
-            }
-        else{
-            try{
-                Statement statement=(Statement) Connectionz.GetConnection().createStatement();
-                statement.executeUpdate(sql);
-                JOptionPane.showMessageDialog(null,"Data Berhasil diEdit","Edit Data",JOptionPane.WARNING_MESSAGE);
-                statement.close();
-                //conec.close();
-                txtIDUser.requestFocus();
-                              
-            }
-            catch (Exception exc) {
-                System.err.println("Error:"+exc);
-            }
+        String  id_user = txtIDUser.getText();
+        String nama_depan = txtNamaDepan.getText();
+        String nama_belakang = txtNamaBelakang.getText();
+        String jenis_kelamin = (String) jComboBox1.getSelectedItem();
+        String no_hp = txtNoHp.getText();
+        String alamat = txtLevel.getText();
+        String Level = txtLevel.getText();
+        String password = txtPassword.getText();
         
-        }
-         datatable();
+        
+      
+          try {
+                Statement statement  = (Statement) Connectionz.GetConnection().createStatement();
+                statement.executeUpdate("INSERT INTO tbluser VALUE ('" + id_user + "','" + nama_depan + "','" + nama_belakang + "','" + jenis_kelamin+ "','" + no_hp + "','" +alamat+ "','" +Level+ "','" +password+ "');");
+           statement.close();
+           JOptionPane.showMessageDialog(null, "Data berhasil disimpan");
+            }catch (Exception e){
+                JOptionPane.showMessageDialog(null, "Data berhasil di simpan");
+            }
+            datatable();
+            kosongkan_Form();
+    
+        
+            
                             
  
        
@@ -482,6 +491,7 @@ public class DataUser extends javax.swing.JFrame {
             datatable();
         
         }
+          datatable();
         
     }//GEN-LAST:event_btUsrEditActionPerformed
 
@@ -536,7 +546,7 @@ public class DataUser extends javax.swing.JFrame {
         txtIDUser.setText("");
         txtNamaDepan.setText("");
         txtNamaBelakang.setText("");
-       // txt.setText("");
+        jComboBox1.setSelectedItem("");
         txtNoHp.setText("");
         txtAlamat.setText("");
         txtLevel.setText("");
@@ -546,6 +556,18 @@ public class DataUser extends javax.swing.JFrame {
     private void txtcariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcariActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtcariActionPerformed
+
+    private void txtIDUserKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIDUserKeyTyped
+        // TODO add your handling code here:
+        filterangka(evt);
+    }//GEN-LAST:event_txtIDUserKeyTyped
+
+    private void txtPasswordKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPasswordKeyTyped
+        // TODO add your handling code here:
+        filterhuruf(evt);
+        
+      
+    }//GEN-LAST:event_txtPasswordKeyTyped
 
     /**
      * @param args the command line arguments
@@ -617,4 +639,22 @@ public class DataUser extends javax.swing.JFrame {
     private javax.swing.JTextField txtPassword;
     private javax.swing.JTextField txtcari;
     // End of variables declaration//GEN-END:variables
+
+    private void filterangka(KeyEvent a) {
+          if (Character.isAlphabetic(a.getKeyChar())){
+            a.consume();
+            JOptionPane.showMessageDialog(null,"Hanya boleh diisi angka");
+        }
+
+    }
+
+    private void filterhuruf(KeyEvent b) {
+          if (Character.isDigit(b.getKeyChar())){
+            b.consume();
+            JOptionPane.showMessageDialog(null,"Hanya boleh diisi huruf");
+          }
+        
+    }
 }
+
+
