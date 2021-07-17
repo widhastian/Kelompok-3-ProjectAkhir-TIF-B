@@ -22,8 +22,20 @@ import koneksi.Connectionz;
  */
 public class DataUser extends javax.swing.JFrame {
 
+    private DefaultTableModel tabmode;
+    /**
+     * Creates new form DataUser
+     */
+    public DataUser() {
+        initComponents();
+        aktif();
+        datatable();
+        txtIDUser.requestFocus();
+        setLocationRelativeTo(this);
+    }
+    
     private void kosongkan_Form(){
-    txtIDUser.setEditable(true);
+          txtIDUser.setEditable(true);
           txtNamaDepan.setText("");
           txtNamaBelakang.setText("");
           btnGrp.clearSelection();
@@ -35,13 +47,15 @@ public class DataUser extends javax.swing.JFrame {
     
     }
     
-
-    /**
-     * Creates new form DataUser
-     */
-    public DataUser() {
-        initComponents();
-        datatable();
+    private void aktif(){
+        txtIDUser.setEnabled(true);
+        txtNamaDepan.setEnabled(true);
+        txtNamaBelakang.setEnabled(true);
+        jComboBox1.setEnabled(true);
+        txtNoHp.setEnabled(true);
+        txtAlamat.setEnabled(true);
+        txtLevel.setEnabled(true);
+        txtPassword.setEnabled(true);
     }
             private DefaultTableModel tabmode;
       public void noTable(){
@@ -67,7 +81,7 @@ public class DataUser extends javax.swing.JFrame {
         tabel.setModel(tbl);
         try {
             Statement statement = (Statement) Connectionz.GetConnection().createStatement();
-            ResultSet res = statement.executeQuery("select * from tbluser");
+            ResultSet res = statement.executeQuery("select * from tbluser order by id_user asc");
             while (res.next()) {
                 tbl.addRow(new Object[]{
                     res.getString("id_user"),
@@ -85,6 +99,7 @@ public class DataUser extends javax.swing.JFrame {
         }
     }
     
+<<<<<<< HEAD
     public void lebarKolom(){
         TableColumn column;
         tabel.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
@@ -102,6 +117,10 @@ public class DataUser extends javax.swing.JFrame {
     
     public void pencarian(String sql){
         Object[] Baris = {"No","ID User","Nama Depan","Nama Belakang","Jenis Kelamin","No Hp","Alamat","Level","Password"};
+=======
+    public void pencarian(String sql){
+        Object[] Baris = {"ID User","Nama Depan","Nama Belakang","Jenis kelamin","No Hp","Alamat","Level","Password"};
+>>>>>>> 905fe7f79c50561bda536b0870c2ce2a700a442d
         tabmode = new DefaultTableModel(null, Baris);
         tabel.setModel(tabmode);
         int brs = tabel.getRowCount();
@@ -112,6 +131,7 @@ public class DataUser extends javax.swing.JFrame {
             java.sql.Statement stat = Connectionz.GetConnection().createStatement();
             ResultSet hasil = stat.executeQuery(sql);
             while (hasil.next()){
+<<<<<<< HEAD
                 String idUs = hasil.getString("id_user");
                 String namaDep = hasil.getString("nama_depan");
                 String namaBel = hasil.getString("nama_belakang");
@@ -122,11 +142,28 @@ public class DataUser extends javax.swing.JFrame {
                 String[] data = {"",idUs,namaDep,namaBel,nohp,alamat,level,password};
                 tabmode.addRow(data);
                 noTable();
+=======
+                String iduser = hasil.getString("id_user");
+                String namadep = hasil.getString("nama_depan");
+                String namabel = hasil.getString("nama_belakang");
+                String jeniskel = hasil.getString("jenis_kelamin");
+                String nohp = hasil.getString("no_hp");
+                String alamat = hasil.getString("alamat");
+                String level = hasil.getString("level");
+                String pass = hasil.getString("password");
+                String[] data = {iduser,namadep,namabel,jeniskel,nohp,alamat,level,pass};
+                tabmode.addRow(data);
+                //noTable();
+>>>>>>> 905fe7f79c50561bda536b0870c2ce2a700a442d
             }
         } catch(Exception e){
         }
     }
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 905fe7f79c50561bda536b0870c2ce2a700a442d
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -142,10 +179,13 @@ public class DataUser extends javax.swing.JFrame {
         btnBackUser = new javax.swing.JButton();
         btnTambah = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+<<<<<<< HEAD
         txtcariUs = new javax.swing.JTextField();
+=======
+        txtCari = new javax.swing.JTextField();
+>>>>>>> 905fe7f79c50561bda536b0870c2ce2a700a442d
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        btnCari = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tabel = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
@@ -189,6 +229,7 @@ public class DataUser extends javax.swing.JFrame {
         });
 
         btnTambah.setBackground(new java.awt.Color(231, 152, 174));
+        btnTambah.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnTambah.setForeground(new java.awt.Color(74, 28, 64));
         btnTambah.setText("TAMBAH");
         btnTambah.addActionListener(new java.awt.event.ActionListener() {
@@ -197,9 +238,11 @@ public class DataUser extends javax.swing.JFrame {
             }
         });
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(74, 28, 64));
-        jLabel2.setText("SEARCH");
+        jLabel2.setText("CARI");
 
+<<<<<<< HEAD
         txtcariUs.setForeground(new java.awt.Color(153, 153, 153));
         txtcariUs.setText("Masukkan ID / Nama User");
         txtcariUs.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -218,6 +261,22 @@ public class DataUser extends javax.swing.JFrame {
         txtcariUs.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtcariUsKeyPressed(evt);
+=======
+        txtCari.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtCari.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtCariMouseClicked(evt);
+            }
+        });
+        txtCari.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCariActionPerformed(evt);
+            }
+        });
+        txtCari.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCariKeyTyped(evt);
+>>>>>>> 905fe7f79c50561bda536b0870c2ce2a700a442d
             }
         });
 
@@ -225,14 +284,6 @@ public class DataUser extends javax.swing.JFrame {
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 2, 16)); // NOI18N
         jLabel13.setText("Ilnaa Collection");
-
-        btnCari.setBackground(new java.awt.Color(231, 152, 174));
-        btnCari.setText("CARI");
-        btnCari.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCariActionPerformed(evt);
-            }
-        });
 
         tabel.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -252,38 +303,84 @@ public class DataUser extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(tabel);
 
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("ID User");
 
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("Nama Depan");
 
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setText("Nama Belakang");
 
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel6.setText("Jenis Kelamin");
 
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel7.setText("No Hp");
 
+        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel8.setText("Alamat");
 
-        jLabel9.setText(" Level");
+        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel9.setText("Level");
 
+        jLabel10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel10.setText("Password");
 
+        txtIDUser.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         txtIDUser.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtIDUserKeyPressed(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtIDUserKeyTyped(evt);
             }
         });
 
+        txtNamaDepan.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtNamaDepan.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtNamaDepanKeyPressed(evt);
+            }
+        });
+
+        txtNamaBelakang.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtNamaBelakang.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtNamaBelakangKeyPressed(evt);
+            }
+        });
+
+        txtNoHp.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         txtNoHp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNoHpActionPerformed(evt);
             }
         });
+        txtNoHp.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtNoHpKeyPressed(evt);
+            }
+        });
 
         txtAlamat.setColumns(20);
+        txtAlamat.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
         txtAlamat.setRows(5);
+        txtAlamat.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtAlamatKeyPressed(evt);
+            }
+        });
         jScrollPane3.setViewportView(txtAlamat);
 
+        txtLevel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtLevel.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtLevelKeyPressed(evt);
+            }
+        });
+
+        txtPassword.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         txtPassword.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtPasswordKeyTyped(evt);
@@ -291,6 +388,7 @@ public class DataUser extends javax.swing.JFrame {
         });
 
         btnSimpan.setBackground(new java.awt.Color(231, 152, 174));
+        btnSimpan.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnSimpan.setText("SIMPAN");
         btnSimpan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -299,6 +397,7 @@ public class DataUser extends javax.swing.JFrame {
         });
 
         btnHapus.setBackground(new java.awt.Color(231, 152, 174));
+        btnHapus.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnHapus.setText("HAPUS");
         btnHapus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -307,6 +406,7 @@ public class DataUser extends javax.swing.JFrame {
         });
 
         btnBatal.setBackground(new java.awt.Color(231, 152, 174));
+        btnBatal.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnBatal.setText("BATAL");
         btnBatal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -315,6 +415,7 @@ public class DataUser extends javax.swing.JFrame {
         });
 
         btUsrEdit.setBackground(new java.awt.Color(231, 152, 174));
+        btUsrEdit.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btUsrEdit.setText("EDIT");
         btUsrEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -322,27 +423,27 @@ public class DataUser extends javax.swing.JFrame {
             }
         });
 
+        jComboBox1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Laki-laki", "Perempuan" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel13))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(btnBackUser)
                 .addGap(370, 370, 370)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel12))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel13))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(36, 36, 36)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
                             .addComponent(jLabel4)
                             .addComponent(jLabel5)
                             .addComponent(jLabel6)
@@ -350,6 +451,7 @@ public class DataUser extends javax.swing.JFrame {
                             .addComponent(jLabel8)
                             .addComponent(jLabel9)
                             .addComponent(jLabel10)
+<<<<<<< HEAD
                             .addComponent(jLabel2))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -358,27 +460,39 @@ public class DataUser extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnCari))
                             .addComponent(txtIDUser)
+=======
+                            .addComponent(jLabel3))
+                        .addGap(43, 43, 43)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtLevel, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtPassword, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtNoHp, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtIDUser, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+>>>>>>> 905fe7f79c50561bda536b0870c2ce2a700a442d
                             .addComponent(txtNamaDepan)
-                            .addComponent(txtNamaBelakang)
-                            .addComponent(jScrollPane3)
-                            .addComponent(txtLevel)
-                            .addComponent(txtPassword)
-                            .addComponent(txtNoHp)
-                            .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(txtNamaBelakang))
                         .addGap(27, 27, 27)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 833, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
+                        .addGap(34, 34, 34)
                         .addComponent(btnTambah)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnSimpan)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btUsrEdit)
-                        .addGap(22, 22, 22)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnHapus)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnBatal)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel2)
                         .addGap(18, 18, 18)
-                        .addComponent(btnBatal)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(txtCari, javax.swing.GroupLayout.PREFERRED_SIZE, 776, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -391,17 +505,25 @@ public class DataUser extends javax.swing.JFrame {
                     .addComponent(btnBackUser, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel13)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(43, 43, 43)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtCari, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+<<<<<<< HEAD
                         .addGap(45, 45, 45)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtcariUs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2)
                             .addComponent(btnCari))
                         .addGap(18, 18, 18)
+=======
+>>>>>>> 905fe7f79c50561bda536b0870c2ce2a700a442d
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(txtIDUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtIDUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
@@ -410,37 +532,38 @@ public class DataUser extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
                             .addComponent(txtNamaBelakang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel6)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(43, 43, 43)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtNoHp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7))
-                        .addGap(11, 11, 11)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel8))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel7)
+                            .addComponent(txtNoHp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(36, 36, 36)
+                                .addComponent(jLabel8))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(11, 11, 11)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtLevel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel9)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel10))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel9))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel10)))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnTambah)
                     .addComponent(btnSimpan)
+                    .addComponent(btUsrEdit)
                     .addComponent(btnHapus)
-                    .addComponent(btnBatal)
-                    .addComponent(btUsrEdit))
-                .addGap(35, 35, 35))
+                    .addComponent(btnBatal))
+                .addGap(27, 27, 27))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -469,7 +592,7 @@ public class DataUser extends javax.swing.JFrame {
         txtIDUser.setText("");
         txtNamaDepan.setText("");
         txtNamaBelakang.setText("");
-    jComboBox1.setSelectedItem("");
+        jComboBox1.setSelectedItem("");
         txtNoHp.setText("");
         txtLevel.setText("");
         txtPassword.setText("");
@@ -571,6 +694,7 @@ public class DataUser extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNoHpActionPerformed
 
+<<<<<<< HEAD
     private void btnCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCariActionPerformed
         // TODO add your handling code here:
          try{
@@ -613,6 +737,8 @@ public class DataUser extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnCariActionPerformed
 
+=======
+>>>>>>> 905fe7f79c50561bda536b0870c2ce2a700a442d
     private void btnBatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBatalActionPerformed
         // TODO add your handling code here:
         txtIDUser.setText("");
@@ -625,9 +751,15 @@ public class DataUser extends javax.swing.JFrame {
         txtPassword.setText("");
     }//GEN-LAST:event_btnBatalActionPerformed
 
+<<<<<<< HEAD
     private void txtcariUsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcariUsActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtcariUsActionPerformed
+=======
+    private void txtCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCariActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCariActionPerformed
+>>>>>>> 905fe7f79c50561bda536b0870c2ce2a700a442d
 
     private void txtIDUserKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIDUserKeyTyped
         // TODO add your handling code here:
@@ -641,6 +773,7 @@ public class DataUser extends javax.swing.JFrame {
       
     }//GEN-LAST:event_txtPasswordKeyTyped
 
+<<<<<<< HEAD
     private void tabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelMouseClicked
         // TODO add your handling code here:
            int bar = tabel.getSelectedRow();
@@ -675,6 +808,68 @@ public class DataUser extends javax.swing.JFrame {
         pencarian(sqlPencarian);
         lebarKolom();
     }//GEN-LAST:event_txtcariUsKeyPressed
+=======
+    private void txtCariMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCariMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCariMouseClicked
+
+    private void txtCariKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCariKeyTyped
+        // TODO add your handling code here:
+        String sqlPencarian = "select * from tbluser where id_user like '%"+txtCari.getText()+"%' or nama_depan like '%"+txtCari.getText()+"%'";
+        pencarian(sqlPencarian);
+    }//GEN-LAST:event_txtCariKeyTyped
+
+    private void tabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelMouseClicked
+        // TODO add your handling code here:
+        int bar = tabel.getSelectedRow();
+        //String a = tabmode.getValueAt(bar, 0).toString();
+        String b = tabmode.getValueAt(bar, 0).toString();
+        txtIDUser.setText(b);
+        txtIDUser.requestFocus();
+    }//GEN-LAST:event_tabelMouseClicked
+
+    private void txtIDUserKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIDUserKeyPressed
+        // TODO add your handling code here:
+        if(evt.getKeyCode()== KeyEvent.VK_ENTER){
+            txtNamaDepan.requestFocus();
+        }
+    }//GEN-LAST:event_txtIDUserKeyPressed
+
+    private void txtNamaDepanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNamaDepanKeyPressed
+        // TODO add your handling code here:
+        if(evt.getKeyCode()== KeyEvent.VK_ENTER){
+            txtNamaBelakang.requestFocus();
+        }
+    }//GEN-LAST:event_txtNamaDepanKeyPressed
+
+    private void txtNamaBelakangKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNamaBelakangKeyPressed
+        // TODO add your handling code here:
+        if(evt.getKeyCode()== KeyEvent.VK_ENTER){
+            txtNoHp.requestFocus();
+        }
+    }//GEN-LAST:event_txtNamaBelakangKeyPressed
+
+    private void txtNoHpKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNoHpKeyPressed
+        // TODO add your handling code here:
+        if(evt.getKeyCode()== KeyEvent.VK_ENTER){
+            txtAlamat.requestFocus();
+        }
+    }//GEN-LAST:event_txtNoHpKeyPressed
+
+    private void txtAlamatKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAlamatKeyPressed
+        // TODO add your handling code here:
+        if(evt.getKeyCode()== KeyEvent.VK_ENTER){
+            txtLevel.requestFocus();
+        }
+    }//GEN-LAST:event_txtAlamatKeyPressed
+
+    private void txtLevelKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtLevelKeyPressed
+        // TODO add your handling code here:
+        if(evt.getKeyCode()== KeyEvent.VK_ENTER){
+            txtPassword.requestFocus();
+        }
+    }//GEN-LAST:event_txtLevelKeyPressed
+>>>>>>> 905fe7f79c50561bda536b0870c2ce2a700a442d
 
     /**
      * @param args the command line arguments
@@ -715,7 +910,6 @@ public class DataUser extends javax.swing.JFrame {
     private javax.swing.JButton btUsrEdit;
     private javax.swing.JButton btnBackUser;
     private javax.swing.JButton btnBatal;
-    private javax.swing.JButton btnCari;
     private javax.swing.ButtonGroup btnGrp;
     private javax.swing.JButton btnHapus;
     private javax.swing.JButton btnSimpan;
@@ -738,13 +932,17 @@ public class DataUser extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable tabel;
     private javax.swing.JTextArea txtAlamat;
+    private javax.swing.JTextField txtCari;
     private javax.swing.JTextField txtIDUser;
     private javax.swing.JTextField txtLevel;
     private javax.swing.JTextField txtNamaBelakang;
     private javax.swing.JTextField txtNamaDepan;
     private javax.swing.JTextField txtNoHp;
     private javax.swing.JTextField txtPassword;
+<<<<<<< HEAD
     private javax.swing.JTextField txtcariUs;
+=======
+>>>>>>> 905fe7f79c50561bda536b0870c2ce2a700a442d
     // End of variables declaration//GEN-END:variables
 
     private void filterangka(KeyEvent a) {

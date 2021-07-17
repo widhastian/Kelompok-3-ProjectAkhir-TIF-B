@@ -6,11 +6,20 @@
 package ProjectAkhirKami;
 
 import com.mysql.jdbc.Statement;
+<<<<<<< HEAD
 import static com.sun.webkit.perf.WCFontPerfLogger.reset;
+=======
+import java.sql.Connection;
+>>>>>>> 905fe7f79c50561bda536b0870c2ce2a700a442d
 import java.sql.ResultSet;
+import java.util.HashMap;
+import java.util.Map;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import koneksi.Connectionz;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.design.JasperDesign;
 
 /**
  *
@@ -21,14 +30,39 @@ public class TransaksiPenjualan extends javax.swing.JFrame {
     /**
      * Creates new form Transaksi
      */
+    
+    public final Connection conn = new Connectionz().GetConnection();
+    
+    private DefaultTableModel tabmode;
+    
     public TransaksiPenjualan() {
         initComponents();
         setLocationRelativeTo(this);
         datatabel();
     }
     
+    JasperReport JasRep;
+    JasperPrint JasPri;
+    Map param = new HashMap();
+    JasperDesign JasDes;
+    
+    // frame maks dan geser panel
+    static boolean maximixed = true;
+    int xMouse;
+    int yMouse;
+    
+    private void aktif(){
+        txtIdBarangKeluar.setEnabled(true);
+        txtGudang.setEnabled(true);
+        txtKodePart.setEnabled(true);
+        txtNamaPart.setEnabled(true);
+        txtJumlahBarang.setEnabled(true);
+        txtKeterangan.setEnabled(true);
+    }
+    
     public void datatabel(){
         DefaultTableModel tbl = new DefaultTableModel();
+<<<<<<< HEAD
         tbl.addColumn("Kode Penjualan");
         tbl.addColumn("Tanggal Transaksi");
         tbl.addColumn("Total Transaksi ");
@@ -37,11 +71,18 @@ public class TransaksiPenjualan extends javax.swing.JFrame {
         tbl.addColumn("ID Barang");
         tbl.addColumn("SUbtotal");
         tbl_kr.setModel(tbl);
+=======
+        tbl.addColumn("Nama Barang");
+        tbl.addColumn("Jumlah Beli");
+        tbl.addColumn("Harga Satuan");
+        tabelKeranjang.setModel(tbl);
+>>>>>>> 905fe7f79c50561bda536b0870c2ce2a700a442d
         try {
             Statement statement = (Statement) Connectionz.GetConnection().createStatement();
             ResultSet res = statement.executeQuery("select * from tblpenjualan ; select * tbldetail_penjualan");
             while (res.next()) {
                 tbl.addRow(new Object[]{
+<<<<<<< HEAD
                     res.getString("kode_penjualan"),
                     res.getString("tgl_transaksi"),
                     res.getString("total_transaksi"),
@@ -50,6 +91,12 @@ public class TransaksiPenjualan extends javax.swing.JFrame {
                     res.getString("id_barang"),
                     res.getString("sub_totalhrg"),});
                 tbl_kr.setModel(tbl);
+=======
+                    res.getString("nama_barang"),
+                    res.getString("harga_satuan"),
+                    res.getString("jumlah"),});
+                tabelKeranjang.setModel(tbl);
+>>>>>>> 905fe7f79c50561bda536b0870c2ce2a700a442d
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(rootPane, "salah");
@@ -78,6 +125,7 @@ public class TransaksiPenjualan extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         txtHargaSatuan = new javax.swing.JTextField();
         txtNamaBarang = new javax.swing.JTextField();
+<<<<<<< HEAD
         txtJumlahB = new javax.swing.JTextField();
         btnTmbTran = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
@@ -96,6 +144,21 @@ public class TransaksiPenjualan extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbl_kr = new javax.swing.JTable();
+=======
+        txtJumlahBeli = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        txtTotal = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        txtBayar = new javax.swing.JTextField();
+        txtKembalian = new javax.swing.JTextField();
+        btnBayar = new javax.swing.JButton();
+        jButton12 = new javax.swing.JButton();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tabelKeranjang = new javax.swing.JTable();
+>>>>>>> 905fe7f79c50561bda536b0870c2ce2a700a442d
         jLabel3 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -104,10 +167,9 @@ public class TransaksiPenjualan extends javax.swing.JFrame {
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         txtNamaPegawai = new javax.swing.JTextField();
-        jLabel14 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        btn_tanggal = new com.toedter.calendar.JDateChooser();
         btnCetak = new javax.swing.JButton();
+        txtSubtotal = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -119,10 +181,14 @@ public class TransaksiPenjualan extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 39)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(74, 28, 64));
         jLabel1.setText("TRANSAKSI ");
+<<<<<<< HEAD
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(494, 34, -1, -1));
+=======
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+>>>>>>> 905fe7f79c50561bda536b0870c2ce2a700a442d
 
         btnback.setBackground(new java.awt.Color(231, 152, 174));
-        btnback.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnback.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btnback.setForeground(new java.awt.Color(74, 28, 64));
         btnback.setText("KEMBALI");
         btnback.addActionListener(new java.awt.event.ActionListener() {
@@ -130,35 +196,42 @@ public class TransaksiPenjualan extends javax.swing.JFrame {
                 btnbackActionPerformed(evt);
             }
         });
+<<<<<<< HEAD
         jPanel1.add(btnback, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+=======
+        jPanel1.add(btnback, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 0, -1, -1));
+>>>>>>> 905fe7f79c50561bda536b0870c2ce2a700a442d
 
         jPanel3.setBackground(new java.awt.Color(231, 152, 174));
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(74, 28, 64));
         jLabel4.setText("Jumlah Beli");
 
+        txtKodePenjualan.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         txtKodePenjualan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtKodePenjualanActionPerformed(evt);
             }
         });
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(74, 28, 64));
         jLabel5.setText("Kode Penjualan");
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(74, 28, 64));
         jLabel6.setText("Nama Barang");
 
+        txtHargaSatuan.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         txtHargaSatuan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtHargaSatuanActionPerformed(evt);
             }
         });
 
+<<<<<<< HEAD
         btnTmbTran.setBackground(new java.awt.Color(231, 152, 174));
         btnTmbTran.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnTmbTran.setForeground(new java.awt.Color(74, 28, 64));
@@ -168,8 +241,13 @@ public class TransaksiPenjualan extends javax.swing.JFrame {
                 btnTmbTranActionPerformed(evt);
             }
         });
+=======
+        txtNamaBarang.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+>>>>>>> 905fe7f79c50561bda536b0870c2ce2a700a442d
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtJumlahBeli.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel7.setText("Harga Satuan");
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -183,6 +261,7 @@ public class TransaksiPenjualan extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+<<<<<<< HEAD
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6)
@@ -204,6 +283,23 @@ public class TransaksiPenjualan extends javax.swing.JFrame {
                             .addComponent(txtKodePenjualan, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)
                             .addComponent(txtidBar))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+=======
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel7))
+                .addGap(25, 25, 25)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtJumlahBeli, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtKodePenjualan, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtNamaBarang, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(20, Short.MAX_VALUE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(txtHargaSatuan, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))))
+>>>>>>> 905fe7f79c50561bda536b0870c2ce2a700a442d
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -212,6 +308,7 @@ public class TransaksiPenjualan extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtKodePenjualan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
+<<<<<<< HEAD
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(118, 118, 118)
@@ -291,6 +388,64 @@ public class TransaksiPenjualan extends javax.swing.JFrame {
         jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(1525, 112, -1, -1));
 
         tbl_kr.setModel(new javax.swing.table.DefaultTableModel(
+=======
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(txtNamaBarang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(txtJumlahBeli, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(txtHargaSatuan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, -1, -1));
+
+        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(74, 28, 64));
+        jLabel9.setText("SUBTOTAL");
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 320, -1, -1));
+
+        txtTotal.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jPanel1.add(txtTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 360, 160, 33));
+
+        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(74, 28, 64));
+        jLabel11.setText("TOTAL");
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 360, -1, -1));
+
+        txtBayar.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jPanel1.add(txtBayar, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 320, 170, -1));
+
+        txtKembalian.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jPanel1.add(txtKembalian, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 400, 170, -1));
+
+        btnBayar.setBackground(new java.awt.Color(231, 152, 174));
+        btnBayar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnBayar.setForeground(new java.awt.Color(74, 28, 64));
+        btnBayar.setText("BAYAR");
+        jPanel1.add(btnBayar, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 360, 170, 35));
+
+        jButton12.setBackground(new java.awt.Color(231, 152, 174));
+        jButton12.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jButton12.setForeground(new java.awt.Color(74, 28, 64));
+        jButton12.setText("CANCEL");
+        jPanel1.add(jButton12, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 180, 100, -1));
+
+        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ProjectAkhirKami/1_1_1_e790ae2c-67a6-45b9-a1dd-d70b127f5322-removebg-preview.png"))); // NOI18N
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(1606, 11, -1, -1));
+
+        jLabel13.setFont(new java.awt.Font("Tahoma", 2, 16)); // NOI18N
+        jLabel13.setText("Ilnaa Collection");
+        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(1584, 104, -1, -1));
+
+        tabelKeranjang.setModel(new javax.swing.table.DefaultTableModel(
+>>>>>>> 905fe7f79c50561bda536b0870c2ce2a700a442d
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -301,40 +456,61 @@ public class TransaksiPenjualan extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+<<<<<<< HEAD
         jScrollPane2.setViewportView(tbl_kr);
 
         jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(575, 187, 677, 316));
+=======
+        jScrollPane2.setViewportView(tabelKeranjang);
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 140, 393, 169));
+>>>>>>> 905fe7f79c50561bda536b0870c2ce2a700a442d
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(74, 28, 64));
         jLabel3.setText("Tanggal");
+<<<<<<< HEAD
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 132, -1, -1));
+=======
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, -1, -1));
+>>>>>>> 905fe7f79c50561bda536b0870c2ce2a700a442d
 
         jButton1.setBackground(new java.awt.Color(231, 152, 174));
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jButton1.setText("EDIT");
+<<<<<<< HEAD
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(575, 614, 138, -1));
 
         jButton3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jButton3.setText("CETAK");
         jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(1496, 656, 138, 35));
+=======
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 140, 100, -1));
+
+        jButton3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jButton3.setText("CETAK");
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(1555, 575, 138, 35));
+>>>>>>> 905fe7f79c50561bda536b0870c2ce2a700a442d
 
         jPanel4.setBackground(new java.awt.Color(231, 152, 174));
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        txtIDUser.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         txtIDUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtIDUserActionPerformed(evt);
             }
         });
 
-        jLabel15.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel15.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(74, 28, 64));
         jLabel15.setText("ID User");
 
-        jLabel16.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel16.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(74, 28, 64));
         jLabel16.setText("Nama Pegawai");
+
+        txtNamaPegawai.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -345,26 +521,27 @@ public class TransaksiPenjualan extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel15)
                     .addComponent(jLabel16))
-                .addGap(26, 26, 26)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtNamaPegawai, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtIDUser, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(39, Short.MAX_VALUE))
+                    .addComponent(txtNamaPegawai, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtIDUser, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtIDUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel15))
-                .addGap(21, 21, 21)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel16)
                     .addComponent(txtNamaPegawai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addGap(15, 15, 15))
         );
 
+<<<<<<< HEAD
         jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 176, -1, -1));
 
         jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ProjectAkhirKami/1_1_1_e790ae2c-67a6-45b9-a1dd-d70b127f5322-removebg-preview.png"))); // NOI18N
@@ -376,21 +553,34 @@ public class TransaksiPenjualan extends javax.swing.JFrame {
 
         jDateChooser1.setBackground(new java.awt.Color(231, 152, 174));
         jPanel1.add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(97, 132, 145, -1));
+=======
+        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, -1, -1));
+
+        btn_tanggal.setBackground(new java.awt.Color(231, 152, 174));
+        jPanel1.add(btn_tanggal, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 100, 145, -1));
+>>>>>>> 905fe7f79c50561bda536b0870c2ce2a700a442d
 
         btnCetak.setBackground(new java.awt.Color(231, 152, 174));
-        btnCetak.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnCetak.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btnCetak.setText("CETAK");
+<<<<<<< HEAD
         jPanel1.add(btnCetak, new org.netbeans.lib.awtextra.AbsoluteConstraints(575, 657, 138, -1));
+=======
+        jPanel1.add(btnCetak, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 220, 100, -1));
+
+        txtSubtotal.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jPanel1.add(txtSubtotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 320, 160, -1));
+>>>>>>> 905fe7f79c50561bda536b0870c2ce2a700a442d
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1268, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 985, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 564, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -482,34 +672,39 @@ public class TransaksiPenjualan extends javax.swing.JFrame {
         }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBayar;
     private javax.swing.JButton btnCetak;
+<<<<<<< HEAD
     private javax.swing.JButton btnRst;
     private javax.swing.JButton btnTmbTran;
     private javax.swing.JButton btnback;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton11;
+=======
+    private com.toedter.calendar.JDateChooser btn_tanggal;
+    private javax.swing.JButton btnback;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton12;
+>>>>>>> 905fe7f79c50561bda536b0870c2ce2a700a442d
     private javax.swing.JButton jButton3;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane2;
+<<<<<<< HEAD
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
     private javax.swing.JTextField jmlHrgB;
@@ -522,5 +717,18 @@ public class TransaksiPenjualan extends javax.swing.JFrame {
     private javax.swing.JTextField txtNamaBarang;
     private javax.swing.JTextField txtNamaPegawai;
     private javax.swing.JTextField txtidBar;
+=======
+    private javax.swing.JTable tabelKeranjang;
+    private javax.swing.JTextField txtBayar;
+    private javax.swing.JTextField txtHargaSatuan;
+    private javax.swing.JTextField txtIDUser;
+    private javax.swing.JTextField txtJumlahBeli;
+    private javax.swing.JTextField txtKembalian;
+    private javax.swing.JTextField txtKodePenjualan;
+    private javax.swing.JTextField txtNamaBarang;
+    private javax.swing.JTextField txtNamaPegawai;
+    private javax.swing.JTextField txtSubtotal;
+    private javax.swing.JTextField txtTotal;
+>>>>>>> 905fe7f79c50561bda536b0870c2ce2a700a442d
     // End of variables declaration//GEN-END:variables
 }

@@ -272,7 +272,7 @@ public class dataBarang extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tabel);
 
         btnBersih.setBackground(new java.awt.Color(231, 152, 174));
-        btnBersih.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnBersih.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnBersih.setText("BERSIH");
         btnBersih.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -281,7 +281,7 @@ public class dataBarang extends javax.swing.JFrame {
         });
 
         btnTambah.setBackground(new java.awt.Color(231, 152, 174));
-        btnTambah.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnTambah.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnTambah.setText("TAMBAH");
         btnTambah.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -290,7 +290,7 @@ public class dataBarang extends javax.swing.JFrame {
         });
 
         btnHapus.setBackground(new java.awt.Color(231, 152, 174));
-        btnHapus.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnHapus.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnHapus.setText("HAPUS");
         btnHapus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -299,7 +299,7 @@ public class dataBarang extends javax.swing.JFrame {
         });
 
         btnEdit.setBackground(new java.awt.Color(231, 152, 174));
-        btnEdit.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnEdit.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnEdit.setText("EDIT");
         btnEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -308,7 +308,7 @@ public class dataBarang extends javax.swing.JFrame {
         });
 
         btnKembali.setBackground(new java.awt.Color(231, 152, 174));
-        btnKembali.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnKembali.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnKembali.setText("KEMBALI");
         btnKembali.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

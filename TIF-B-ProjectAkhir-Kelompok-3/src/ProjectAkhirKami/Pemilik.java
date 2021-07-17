@@ -174,7 +174,7 @@ public class Pemilik extends javax.swing.JFrame {
 
     private void btnLaporanPenjualanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLaporanPenjualanActionPerformed
         // TODO add your handling code here:
-        CetakLaporanPenjualan c=new CetakLaporanPenjualan();
+        Nota c=new Nota();
         c.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnLaporanPenjualanActionPerformed
