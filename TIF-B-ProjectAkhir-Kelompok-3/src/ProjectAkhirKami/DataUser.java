@@ -6,12 +6,14 @@
 package ProjectAkhirKami;
 
 import com.mysql.jdbc.Statement;
+import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 import koneksi.Connectionz;
 
 /**
@@ -40,6 +42,15 @@ public class DataUser extends javax.swing.JFrame {
     public DataUser() {
         initComponents();
         datatable();
+    }
+            private DefaultTableModel tabmode;
+      public void noTable(){
+        int Baris = tabmode.getRowCount();
+        for (int a=0; a<Baris; a++)
+        {
+            String nomor = String.valueOf(a+1);
+            tabmode.setValueAt(nomor +".",a,0);
+        }
     }
     
     public void datatable() {
@@ -73,6 +84,48 @@ public class DataUser extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "salah");
         }
     }
+    
+    public void lebarKolom(){
+        TableColumn column;
+        tabel.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        column = tabel.getColumnModel().getColumn(0);
+        column.setPreferredWidth(40);
+        column = tabel.getColumnModel().getColumn(1);
+        column.setPreferredWidth(100);
+        column = tabel.getColumnModel().getColumn(2);
+        column.setPreferredWidth(150);
+        column = tabel.getColumnModel().getColumn(3);
+        column.setPreferredWidth(150);
+        column = tabel.getColumnModel().getColumn(4);
+        column.setPreferredWidth(100);
+    }
+    
+    public void pencarian(String sql){
+        Object[] Baris = {"No","ID User","Nama Depan","Nama Belakang","Jenis Kelamin","No Hp","Alamat","Level","Password"};
+        tabmode = new DefaultTableModel(null, Baris);
+        tabel.setModel(tabmode);
+        int brs = tabel.getRowCount();
+        for (int i = 0; 1 < brs; i++){
+            tabmode.removeRow(1);
+        }
+        try{
+            java.sql.Statement stat = Connectionz.GetConnection().createStatement();
+            ResultSet hasil = stat.executeQuery(sql);
+            while (hasil.next()){
+                String idUs = hasil.getString("id_user");
+                String namaDep = hasil.getString("nama_depan");
+                String namaBel = hasil.getString("nama_belakang");
+                String nohp = hasil.getString("no_hp");
+                String alamat = hasil.getString("alamat");
+                String level = hasil.getString("level");
+                String password = hasil.getString("password");
+                String[] data = {"",idUs,namaDep,namaBel,nohp,alamat,level,password};
+                tabmode.addRow(data);
+                noTable();
+            }
+        } catch(Exception e){
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -89,7 +142,7 @@ public class DataUser extends javax.swing.JFrame {
         btnBackUser = new javax.swing.JButton();
         btnTambah = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        txtcari = new javax.swing.JTextField();
+        txtcariUs = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         btnCari = new javax.swing.JButton();
@@ -147,10 +200,24 @@ public class DataUser extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(74, 28, 64));
         jLabel2.setText("SEARCH");
 
-        txtcari.setText("Masukkan ID User");
-        txtcari.addActionListener(new java.awt.event.ActionListener() {
+        txtcariUs.setForeground(new java.awt.Color(153, 153, 153));
+        txtcariUs.setText("Masukkan ID / Nama User");
+        txtcariUs.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtcariUsFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtcariUsFocusLost(evt);
+            }
+        });
+        txtcariUs.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtcariActionPerformed(evt);
+                txtcariUsActionPerformed(evt);
+            }
+        });
+        txtcariUs.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtcariUsKeyPressed(evt);
             }
         });
 
@@ -178,6 +245,11 @@ public class DataUser extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabelMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(tabel);
 
         jLabel3.setText("ID User");
@@ -279,10 +351,10 @@ public class DataUser extends javax.swing.JFrame {
                             .addComponent(jLabel9)
                             .addComponent(jLabel10)
                             .addComponent(jLabel2))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(txtcari)
+                                .addComponent(txtcariUs)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnCari))
                             .addComponent(txtIDUser)
@@ -323,7 +395,7 @@ public class DataUser extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(45, 45, 45)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtcari, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtcariUs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2)
                             .addComponent(btnCari))
                         .addGap(18, 18, 18)
@@ -504,7 +576,7 @@ public class DataUser extends javax.swing.JFrame {
          try{
         com.mysql.jdbc.Statement statement = (com.mysql.jdbc.Statement) Connectionz.GetConnection().createStatement();
         ResultSet res = statement.executeQuery ("select * from tbluser where "
-                    + "id_user='" + txtcari.getText() + "'");
+                    + "id_user='" + txtcariUs.getText() + "'");
         DefaultTableModel tb2 = new DefaultTableModel();
         tb2.addColumn("ID User");
         tb2.addColumn("Nama Depan");
@@ -553,9 +625,9 @@ public class DataUser extends javax.swing.JFrame {
         txtPassword.setText("");
     }//GEN-LAST:event_btnBatalActionPerformed
 
-    private void txtcariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcariActionPerformed
+    private void txtcariUsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcariUsActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtcariActionPerformed
+    }//GEN-LAST:event_txtcariUsActionPerformed
 
     private void txtIDUserKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIDUserKeyTyped
         // TODO add your handling code here:
@@ -568,6 +640,41 @@ public class DataUser extends javax.swing.JFrame {
         
       
     }//GEN-LAST:event_txtPasswordKeyTyped
+
+    private void tabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelMouseClicked
+        // TODO add your handling code here:
+           int bar = tabel.getSelectedRow();
+        String a = tabmode.getValueAt(bar, 0).toString();
+        String b = tabmode.getValueAt(bar, 1).toString();
+        txtIDUser.setText(b);
+        txtIDUser.requestFocus();
+        
+    }//GEN-LAST:event_tabelMouseClicked
+
+    private void txtcariUsFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtcariUsFocusGained
+        // TODO add your handling code here:
+                if (txtcariUs.getText().equals("Masukkan ID / Nama User"))
+        {
+            txtcariUs.setText("");
+            txtcariUs.setForeground(new Color(153,153,153));
+        }
+    }//GEN-LAST:event_txtcariUsFocusGained
+
+    private void txtcariUsFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtcariUsFocusLost
+        // TODO add your handling code here:
+                if (txtcariUs.getText().equals(""))
+        {
+            txtcariUs.setText("Masukkan ID / Nama User");
+            txtcariUs.setForeground(new Color(153,153,153));
+        }
+    }//GEN-LAST:event_txtcariUsFocusLost
+
+    private void txtcariUsKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcariUsKeyPressed
+        // TODO add your handling code here:
+           String sqlPencarian = "select * from tbluser where id_user like '%"+txtIDUser.getText()+"%' or nama_depan like '%"+txtNamaDepan.getText()+"%'";
+        pencarian(sqlPencarian);
+        lebarKolom();
+    }//GEN-LAST:event_txtcariUsKeyPressed
 
     /**
      * @param args the command line arguments
@@ -637,7 +744,7 @@ public class DataUser extends javax.swing.JFrame {
     private javax.swing.JTextField txtNamaDepan;
     private javax.swing.JTextField txtNoHp;
     private javax.swing.JTextField txtPassword;
-    private javax.swing.JTextField txtcari;
+    private javax.swing.JTextField txtcariUs;
     // End of variables declaration//GEN-END:variables
 
     private void filterangka(KeyEvent a) {

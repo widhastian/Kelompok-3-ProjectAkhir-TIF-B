@@ -5,6 +5,7 @@
  */
 package ProjectAkhirKami;
 
+import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -71,6 +72,7 @@ public class dataBarang2 extends javax.swing.JFrame {
         } catch (Exception e){
         }
     }
+    
     private void aktif(){
         txtIDBarang.setEnabled(true);
         txtNamaBarang.setEnabled(true);
@@ -231,6 +233,16 @@ public class dataBarang2 extends javax.swing.JFrame {
         txtStok.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         txtCari.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtCari.setForeground(new java.awt.Color(153, 153, 153));
+        txtCari.setText("Cari Nama / ID Barang");
+        txtCari.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtCariFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtCariFocusLost(evt);
+            }
+        });
         txtCari.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCariActionPerformed(evt);
@@ -557,6 +569,24 @@ public class dataBarang2 extends javax.swing.JFrame {
         p.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnKembaliActionPerformed
+
+    private void txtCariFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCariFocusGained
+        // TODO add your handling code here:
+         if (txtCari.getText().equals("Cari Nama / ID Barang"))
+        {
+            txtCari.setText("");
+            txtCari.setForeground(new Color(153,153,153));
+        }
+    }//GEN-LAST:event_txtCariFocusGained
+
+    private void txtCariFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCariFocusLost
+        // TODO add your handling code here:
+         if (txtCari.getText().equals(""))
+        {
+            txtCari.setText("Cari Nama / ID Barang");
+            txtCari.setForeground(new Color(153,153,153));
+        }
+    }//GEN-LAST:event_txtCariFocusLost
 
     /**
      * @param args the command line arguments

@@ -6,10 +6,13 @@
 package ProjectAkhirKami;
 
 import com.mysql.jdbc.Statement;
+import java.awt.Color;
+import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 import koneksi.Connectionz;
 
 /**
@@ -18,13 +21,26 @@ import koneksi.Connectionz;
  */
 public class DataSuplier extends javax.swing.JFrame {
 
+
     /**
      * Creates new form DataSuplier
      */
     public DataSuplier() {
         initComponents();
         datatable();
+
     }
+        private DefaultTableModel tabmode;
+      public void noTable(){
+        int Baris = tabmode.getRowCount();
+        for (int a=0; a<Baris; a++)
+        {
+            String nomor = String.valueOf(a+1);
+            tabmode.setValueAt(nomor +".",a,0);
+        }
+    }
+      
+      
     
     public void datatable() {
 
@@ -49,6 +65,7 @@ public class DataSuplier extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "salah");
         }
     }
+    
 private void autoIDSuplier() {
         try {
             Connection con = new Connectionz().GetConnection();
@@ -76,6 +93,44 @@ private void autoIDSuplier() {
             JOptionPane.showMessageDialog(null, "Terjadi Kesalahan");
         }
     }
+  public void lebarKolom(){
+        TableColumn column;
+        tabel.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        column = tabel.getColumnModel().getColumn(0);
+        column.setPreferredWidth(40);
+        column = tabel.getColumnModel().getColumn(1);
+        column.setPreferredWidth(100);
+        column = tabel.getColumnModel().getColumn(2);
+        column.setPreferredWidth(150);
+        column = tabel.getColumnModel().getColumn(3);
+        column.setPreferredWidth(150);
+        column = tabel.getColumnModel().getColumn(4);
+        column.setPreferredWidth(100);
+    }
+    
+    public void pencarian(String sql){
+        Object[] Baris = {"No","ID Suplier","Nama Perusahaan","No Hp","Alamat"};
+        tabmode = new DefaultTableModel(null, Baris);
+        tabel.setModel(tabmode);
+        int brs = tabel.getRowCount();
+        for (int i = 0; 1 < brs; i++){
+            tabmode.removeRow(1);
+        }
+        try{
+            java.sql.Statement stat = Connectionz.GetConnection().createStatement();
+            ResultSet hasil = stat.executeQuery(sql);
+            while (hasil.next()){
+                String idsup = hasil.getString("id_suplier");
+                String namaper = hasil.getString("nama_perusahaan");
+                String nohp = hasil.getString("no_hp");
+                String alamat = hasil.getString("alamat");
+                String[] data = {"",idsup,namaper,nohp,alamat};
+                tabmode.addRow(data);
+                noTable();
+            }
+        } catch(Exception e){
+        }
+    }
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -91,7 +146,7 @@ private void autoIDSuplier() {
         jLabel1 = new javax.swing.JLabel();
         btntambah = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        txtcari = new javax.swing.JTextField();
+        txtSearch = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -143,7 +198,21 @@ private void autoIDSuplier() {
         jLabel2.setForeground(new java.awt.Color(74, 28, 64));
         jLabel2.setText("SEARCH");
 
-        txtcari.setForeground(new java.awt.Color(74, 28, 64));
+        txtSearch.setForeground(new java.awt.Color(153, 153, 153));
+        txtSearch.setText("Masukkan Nama / ID Suplier");
+        txtSearch.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtSearchFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtSearchFocusLost(evt);
+            }
+        });
+        txtSearch.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtSearchKeyTyped(evt);
+            }
+        });
 
         jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ProjectAkhirKami/1_1_1_e790ae2c-67a6-45b9-a1dd-d70b127f5322-removebg-preview.png"))); // NOI18N
 
@@ -159,11 +228,34 @@ private void autoIDSuplier() {
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel5.setText("No Hp");
 
+        txtIDSuplier.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtIDSuplierKeyPressed(evt);
+            }
+        });
+
+        txtNamaPerusahaan.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtNamaPerusahaanKeyPressed(evt);
+            }
+        });
+
+        txtNoHp.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtNoHpKeyPressed(evt);
+            }
+        });
+
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel6.setText("Alamat");
 
         txtAlamat.setColumns(20);
         txtAlamat.setRows(5);
+        txtAlamat.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtAlamatKeyPressed(evt);
+            }
+        });
         jScrollPane2.setViewportView(txtAlamat);
 
         btnsimpan.setBackground(new java.awt.Color(231, 152, 174));
@@ -186,6 +278,11 @@ private void autoIDSuplier() {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabelMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tabel);
 
         btnHapus.setBackground(new java.awt.Color(231, 152, 174));
@@ -267,7 +364,7 @@ private void autoIDSuplier() {
                             .addComponent(txtNoHp)
                             .addComponent(jScrollPane2)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(txtcari, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnCari)))
                         .addGap(19, 19, 19)))
@@ -291,7 +388,7 @@ private void autoIDSuplier() {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
-                            .addComponent(txtcari, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnCari))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -395,7 +492,7 @@ private void autoIDSuplier() {
         try {
             Statement statement = (Statement)Connectionz.GetConnection().createStatement();
             ResultSet res = statement.executeQuery("select * from tblsuplier where + "
-            + "id_suplier='" + txtcari.getText() + "'");
+            + "id_suplier='" + txtSearch.getText() + "'");
             DefaultTableModel tbl= new DefaultTableModel();
             tbl.addColumn("ID Suplier");
             tbl.addColumn("Nama Perusahaan");
@@ -446,6 +543,68 @@ private void autoIDSuplier() {
         }
         datatable();
     }//GEN-LAST:event_btnEditActionPerformed
+
+    private void txtSearchFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtSearchFocusGained
+        // TODO add your handling code here:
+                if (txtSearch.getText().equals("Masukkan Nama / ID Suplier"))
+        {
+            txtSearch.setText("");
+            txtSearch.setForeground(new Color(153,153,153));
+        }
+    }//GEN-LAST:event_txtSearchFocusGained
+
+    private void txtSearchFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtSearchFocusLost
+        // TODO add your handling code here:
+        if (txtSearch.getText().equals(""))
+        {
+            txtSearch.setText("Masukkan Nama / ID Suplier");
+            txtSearch.setForeground(new Color(153,153,153));
+        }
+    }//GEN-LAST:event_txtSearchFocusLost
+
+    private void txtSearchKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyTyped
+        // TODO add your handling code here:
+          String sqlPencarian = "select * from tblsuplier where id_suplier like '%"+txtSearch.getText()+"%' or nama_perusahaan like '%"+txtSearch.getText()+"%'";
+        pencarian(sqlPencarian);
+        lebarKolom();
+    }//GEN-LAST:event_txtSearchKeyTyped
+
+    private void tabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelMouseClicked
+        // TODO add your handling code here:
+        int bar = tabel.getSelectedRow();
+        String a = tabmode.getValueAt(bar, 0).toString();
+        String b = tabmode.getValueAt(bar, 1).toString();
+        txtIDSuplier.setText(b);
+        txtIDSuplier.requestFocus();
+    }//GEN-LAST:event_tabelMouseClicked
+
+    private void txtIDSuplierKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIDSuplierKeyPressed
+        // TODO add your handling code here:
+         if(evt.getKeyCode()== KeyEvent.VK_ENTER){
+            txtIDSuplier.requestFocus();
+        }
+    }//GEN-LAST:event_txtIDSuplierKeyPressed
+
+    private void txtNamaPerusahaanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNamaPerusahaanKeyPressed
+        // TODO add your handling code here:
+                if(evt.getKeyCode()== KeyEvent.VK_ENTER){
+            txtNamaPerusahaan.requestFocus();
+        }
+    }//GEN-LAST:event_txtNamaPerusahaanKeyPressed
+
+    private void txtNoHpKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNoHpKeyPressed
+        // TODO add your handling code here:
+                if(evt.getKeyCode()== KeyEvent.VK_ENTER){
+            txtNoHp.requestFocus();
+        }
+    }//GEN-LAST:event_txtNoHpKeyPressed
+
+    private void txtAlamatKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAlamatKeyPressed
+        // TODO add your handling code here:
+                if(evt.getKeyCode()== KeyEvent.VK_ENTER){
+            txtAlamat.requestFocus();
+        }
+    }//GEN-LAST:event_txtAlamatKeyPressed
 
     /**
      * @param args the command line arguments
@@ -506,6 +665,6 @@ private void autoIDSuplier() {
     private javax.swing.JTextField txtIDSuplier;
     private javax.swing.JTextField txtNamaPerusahaan;
     private javax.swing.JTextField txtNoHp;
-    private javax.swing.JTextField txtcari;
+    private javax.swing.JTextField txtSearch;
     // End of variables declaration//GEN-END:variables
 }
