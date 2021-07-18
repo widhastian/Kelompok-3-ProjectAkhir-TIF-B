@@ -6,6 +6,10 @@
 
 package ProjectAkhirKami;
 
+import java.sql.ResultSet;
+import javax.swing.table.DefaultTableModel;
+import koneksi.Connectionz;
+
 /**
  *
  * @author hp
@@ -13,8 +17,46 @@ package ProjectAkhirKami;
 public class RiwayatTransaksi extends javax.swing.JFrame {
 
     /** Creates new form LaporanPenjualan */
+    
+    private DefaultTableModel tabmode;
     public RiwayatTransaksi() {
         initComponents();
+        datatabel();
+    }
+    
+    public void datatabel(){
+        Object[] Baris = {"No","Tanggal","ID DTP","Kode Penjualan","ID Barang","Nama Barang","Harga Satuan","Jumlah","Total","ID User"};
+        tabmode = new DefaultTableModel(null, Baris);
+        tabelRiwayatTransaksi.setModel(tabmode);
+        String sql = "select * from tbldetail_penjualan";
+        try{
+            java.sql.Statement stat = Connectionz.GetConnection().createStatement();
+            ResultSet hasil = stat.executeQuery(sql);
+            while (hasil.next()){
+                String tgl = hasil.getString("tgl_transaksi");
+                String iddt = hasil.getString("id_detail_penjualan");
+                String kode = hasil.getString("kode_penjualan");
+                String idbar = hasil.getString("id_barang");
+                String nama = hasil.getString("nama_barang");
+                String harga = hasil.getString("harga_satuan");
+                String jumlah = hasil.getString("jumlah_beli");
+                String total = hasil.getString("total_bayar");
+                String iduser = hasil.getString("id_user");
+                String[] data = {"",tgl,iddt,kode,idbar,nama,harga,jumlah,total,iduser};
+                tabmode.addRow(data);
+                noTable();
+            }
+        } catch (Exception e){
+        }
+    }
+    
+    public void noTable(){
+        int Baris = tabmode.getRowCount();
+        for (int a=0; a<Baris; a++)
+        {
+            String nomor = String.valueOf(a+1);
+            tabmode.setValueAt(nomor +".",a,0);
+        }
     }
 
     /** This method is called from within the constructor to
@@ -56,7 +98,7 @@ public class RiwayatTransaksi extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tabelRiwayatTransaksi);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 1030, 430));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 1140, 430));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setText("RIWAYAT PENJUALAN ILLNA COLLECTION");
@@ -64,24 +106,24 @@ public class RiwayatTransaksi extends javax.swing.JFrame {
 
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jButton1.setText("PRINT");
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 70, -1, -1));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 70, -1, -1));
 
         jTextField1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 80, 130, -1));
+        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 80, 130, -1));
 
         jTextField2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 80, 140, -1));
+        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 80, 140, -1));
 
         jTextField3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 80, 330, -1));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("SAMPAI");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 80, -1, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 80, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel3.setText("DARI");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 80, -1, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 80, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("PENCARIAN");
@@ -93,7 +135,7 @@ public class RiwayatTransaksi extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 0, -1, 30));
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1100, 0, -1, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
