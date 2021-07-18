@@ -6,6 +6,7 @@
 package ProjectAkhirKami;
 
 import com.mysql.jdbc.Statement;
+import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -203,7 +204,16 @@ public class DataSuplier extends javax.swing.JFrame {
         });
 
         txtCari.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        txtCari.setForeground(new java.awt.Color(74, 28, 64));
+        txtCari.setForeground(new java.awt.Color(153, 153, 153));
+        txtCari.setText("Masukkan ID / Nama Suplier");
+        txtCari.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtCariFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtCariFocusLost(evt);
+            }
+        });
         txtCari.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCariActionPerformed(evt);
@@ -358,8 +368,7 @@ public class DataSuplier extends javax.swing.JFrame {
                             .addComponent(txtIDSuplier)
                             .addComponent(txtNamaPerusahaan)
                             .addComponent(txtNoHp)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE))))
                 .addGap(40, 40, 40)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -575,6 +584,24 @@ public class DataSuplier extends javax.swing.JFrame {
         txtIDSuplier.setText(b);
         txtIDSuplier.requestFocus();
     }//GEN-LAST:event_tabelMouseClicked
+
+    private void txtCariFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCariFocusGained
+        // TODO add your handling code here:
+         if (txtCari.getText().equals("Masukkan ID / Nama Suplier"))
+        {
+            txtCari.setText(" ");
+            txtCari.setForeground(new Color(153,153,153));
+        }
+    }//GEN-LAST:event_txtCariFocusGained
+
+    private void txtCariFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCariFocusLost
+        // TODO add your handling code here:
+        if (txtCari.getText().equals(" "))
+        {
+            txtCari.setText("Masukkan ID / Nama Suplier");
+            txtCari.setForeground(new Color(153,153,153));
+        }
+    }//GEN-LAST:event_txtCariFocusLost
 
     /**
      * @param args the command line arguments

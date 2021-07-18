@@ -6,12 +6,14 @@
 package ProjectAkhirKami;
 
 import com.mysql.jdbc.Statement;
+import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 import koneksi.Connectionz;
 
 /**
@@ -30,6 +32,32 @@ public class DataUser extends javax.swing.JFrame {
         datatable();
         txtIDUser.requestFocus();
         setLocationRelativeTo(this);
+        lebarKolom();
+        
+    }
+    
+      public void noTable(){
+        int Baris = tabmode.getRowCount();
+        for (int a=0; a<Baris; a++)
+        {
+            String nomor = String.valueOf(a+1);
+            tabmode.setValueAt(nomor +".",a,0);
+        }
+    }
+      
+        public void lebarKolom(){
+        TableColumn column;
+        tabel.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        column = tabel.getColumnModel().getColumn(0);
+        column.setPreferredWidth(40);
+        column = tabel.getColumnModel().getColumn(1);
+        column.setPreferredWidth(100);
+        column = tabel.getColumnModel().getColumn(2);
+        column.setPreferredWidth(150);
+        column = tabel.getColumnModel().getColumn(3);
+        column.setPreferredWidth(150);
+        column = tabel.getColumnModel().getColumn(4);
+        column.setPreferredWidth(100);
     }
     
     private void kosongkan_Form(){
@@ -191,6 +219,16 @@ public class DataUser extends javax.swing.JFrame {
         jLabel2.setText("CARI");
 
         txtCari.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtCari.setForeground(new java.awt.Color(153, 153, 153));
+        txtCari.setText("Masukkan ID / Nama User");
+        txtCari.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtCariFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtCariFocusLost(evt);
+            }
+        });
         txtCari.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 txtCariMouseClicked(evt);
@@ -637,6 +675,7 @@ public class DataUser extends javax.swing.JFrame {
         // TODO add your handling code here:
         String sqlPencarian = "select * from tbluser where id_user like '%"+txtCari.getText()+"%' or nama_depan like '%"+txtCari.getText()+"%'";
         pencarian(sqlPencarian);
+        
     }//GEN-LAST:event_txtCariKeyTyped
 
     private void tabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelMouseClicked
@@ -689,6 +728,24 @@ public class DataUser extends javax.swing.JFrame {
             txtPassword.requestFocus();
         }
     }//GEN-LAST:event_txtLevelKeyPressed
+
+    private void txtCariFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCariFocusGained
+        // TODO add your handling code here:
+                 if (txtCari.getText().equals("Masukkan ID / Nama User"))
+        {
+            txtCari.setText(" ");
+            txtCari.setForeground(new Color(153,153,153));
+        }
+    }//GEN-LAST:event_txtCariFocusGained
+
+    private void txtCariFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCariFocusLost
+        // TODO add your handling code here:
+                 if (txtCari.getText().equals(" "))
+        {
+            txtCari.setText("Masukkan ID / Nama User");
+            txtCari.setForeground(new Color(153,153,153));
+        }
+    }//GEN-LAST:event_txtCariFocusLost
 
     /**
      * @param args the command line arguments
