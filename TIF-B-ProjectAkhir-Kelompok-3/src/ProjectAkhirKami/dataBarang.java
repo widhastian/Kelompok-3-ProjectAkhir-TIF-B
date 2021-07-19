@@ -72,6 +72,7 @@ public class dataBarang extends javax.swing.JFrame {
         } catch (Exception e){
         }
     }
+    
     private void aktif(){
         txtIDBarang.setEnabled(true);
         txtNamaBarang.setEnabled(true);
