@@ -211,10 +211,9 @@ public class TransaksiPenjualan extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         btnback = new javax.swing.JButton();
-        txtTotal = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
-        txtUang = new javax.swing.JTextField();
-        txtKembalian = new javax.swing.JTextField();
+        txtuangbayar = new javax.swing.JTextField();
+        txtuangkembalian = new javax.swing.JTextField();
         btnBayar = new javax.swing.JButton();
         btnHapus = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
@@ -232,11 +231,9 @@ public class TransaksiPenjualan extends javax.swing.JFrame {
         txtKodePenjualan = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         txtNamaBarang = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
         txtHargaSatuan = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         txtJumlah = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
         txtTotalBayar = new javax.swing.JTextField();
         txtIDBarang = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
@@ -276,30 +273,32 @@ public class TransaksiPenjualan extends javax.swing.JFrame {
         });
         jPanel1.add(btnback, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 0, -1, -1));
 
-        txtTotal.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jPanel1.add(txtTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 390, 230, 33));
-
         jLabel11.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(74, 28, 64));
         jLabel11.setText("TOTAL");
         jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 390, -1, -1));
 
-        txtUang.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jPanel1.add(txtUang, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 430, 230, -1));
+        txtuangbayar.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jPanel1.add(txtuangbayar, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 430, 220, 30));
 
-        txtKembalian.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        txtKembalian.addActionListener(new java.awt.event.ActionListener() {
+        txtuangkembalian.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        txtuangkembalian.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtKembalianActionPerformed(evt);
+                txtuangkembalianActionPerformed(evt);
             }
         });
-        jPanel1.add(txtKembalian, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 510, 230, -1));
+        jPanel1.add(txtuangkembalian, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 510, 230, -1));
 
         btnBayar.setBackground(new java.awt.Color(231, 152, 174));
         btnBayar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btnBayar.setForeground(new java.awt.Color(74, 28, 64));
         btnBayar.setText("KEMBALIAN");
-        jPanel1.add(btnBayar, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 470, 230, 35));
+        btnBayar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBayarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnBayar, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 470, 130, 35));
 
         btnHapus.setBackground(new java.awt.Color(231, 152, 174));
         btnHapus.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -373,7 +372,7 @@ public class TransaksiPenjualan extends javax.swing.JFrame {
                 btnTambahActionPerformed(evt);
             }
         });
-        jPanel1.add(btnTambah, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 350, -1, -1));
+        jPanel1.add(btnTambah, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 330, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel2.setText("BAYAR");
@@ -415,10 +414,6 @@ public class TransaksiPenjualan extends javax.swing.JFrame {
         });
         jPanel1.add(txtNamaBarang, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 230, 200, -1));
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel7.setText(":");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 320, 10, -1));
-
         txtHargaSatuan.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         txtHargaSatuan.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -448,12 +443,13 @@ public class TransaksiPenjualan extends javax.swing.JFrame {
         });
         jPanel1.add(txtJumlah, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 290, 200, -1));
 
-        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel8.setText("Total");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 320, -1, -1));
-
         txtTotalBayar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jPanel1.add(txtTotalBayar, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 320, 200, -1));
+        txtTotalBayar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTotalBayarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(txtTotalBayar, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 383, 220, 30));
 
         txtIDBarang.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jPanel1.add(txtIDBarang, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 200, 200, -1));
@@ -494,7 +490,7 @@ public class TransaksiPenjualan extends javax.swing.JFrame {
                 btnClearActionPerformed(evt);
             }
         });
-        jPanel1.add(btnClear, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 350, -1, -1));
+        jPanel1.add(btnClear, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 330, -1, -1));
 
         barang.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -556,9 +552,9 @@ public class TransaksiPenjualan extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtKodePenjualanActionPerformed
 
-    private void txtKembalianActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtKembalianActionPerformed
+    private void txtuangkembalianActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtuangkembalianActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtKembalianActionPerformed
+    }//GEN-LAST:event_txtuangkembalianActionPerformed
 
     private void btnTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahActionPerformed
         String kode_penjualan = txtKodePenjualan.getText();
@@ -680,6 +676,26 @@ public class TransaksiPenjualan extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnCetakActionPerformed
 
+    private void txtTotalBayarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTotalBayarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTotalBayarActionPerformed
+
+    private void btnBayarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBayarActionPerformed
+        
+        double total_harga,uang_bayar,uang_kembalian;
+        total_harga = Double.parseDouble(txtTotalBayar.getText());
+        uang_bayar = Double.parseDouble(txtuangbayar.getText());
+        if (uang_bayar > total_harga) {
+            uang_kembalian = uang_bayar - total_harga;
+            txtuangkembalian.setText(""+uang_kembalian);
+            
+        }else
+            
+        {
+            txtuangkembalian.setText("Uang Anda kurang");
+        }
+    }//GEN-LAST:event_btnBayarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -744,8 +760,6 @@ public class TransaksiPenjualan extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
@@ -755,11 +769,10 @@ public class TransaksiPenjualan extends javax.swing.JFrame {
     private javax.swing.JTextField txtHargaSatuan;
     private javax.swing.JTextField txtIDBarang;
     private javax.swing.JTextField txtJumlah;
-    private javax.swing.JTextField txtKembalian;
     private javax.swing.JTextField txtKodePenjualan;
     private javax.swing.JTextField txtNamaBarang;
-    private javax.swing.JTextField txtTotal;
     private javax.swing.JTextField txtTotalBayar;
-    private javax.swing.JTextField txtUang;
+    private javax.swing.JTextField txtuangbayar;
+    private javax.swing.JTextField txtuangkembalian;
     // End of variables declaration//GEN-END:variables
 }
