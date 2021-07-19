@@ -5,6 +5,7 @@
  */
 package ProjectAkhirKami;
 
+import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -90,6 +91,16 @@ public class HalamanLogin extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel3.setText("PASSWORD");
 
+        txtid.setForeground(new java.awt.Color(153, 153, 153));
+        txtid.setText("Masukkan Id User");
+        txtid.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtidFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtidFocusLost(evt);
+            }
+        });
         txtid.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtidActionPerformed(evt);
@@ -128,6 +139,16 @@ public class HalamanLogin extends javax.swing.JFrame {
             }
         });
 
+        txtpassword.setForeground(new java.awt.Color(153, 153, 153));
+        txtpassword.setText("0000");
+        txtpassword.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtpasswordFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtpasswordFocusLost(evt);
+            }
+        });
         txtpassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtpasswordActionPerformed(evt);
@@ -359,6 +380,42 @@ public class HalamanLogin extends javax.swing.JFrame {
         // TODO add your handling code here:
         filterhuruf(evt);
     }//GEN-LAST:event_txtpasswordKeyTyped
+
+    private void txtidFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtidFocusGained
+        // TODO add your handling code here:
+                 if (txtid.getText().equals("Masukkan Id User"))
+        {
+            txtid.setText("");
+            txtid.setForeground(new Color(153,153,153));
+        }
+    }//GEN-LAST:event_txtidFocusGained
+
+    private void txtidFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtidFocusLost
+        // TODO add your handling code here:
+                 if (txtid.getText().equals(""))
+        {
+            txtid.setText("Masukkan Id User");
+            txtid.setForeground(new Color(153,153,153));
+        }
+    }//GEN-LAST:event_txtidFocusLost
+
+    private void txtpasswordFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtpasswordFocusGained
+        // TODO add your handling code here:
+    if (txtpassword.getText().equals("0000"))
+        {
+            txtpassword.setText("");
+            txtpassword.setForeground(new Color(153,153,153));
+        }
+    }//GEN-LAST:event_txtpasswordFocusGained
+
+    private void txtpasswordFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtpasswordFocusLost
+        // TODO add your handling code here:
+        if (txtpassword.getText().equals(""))
+        {
+            txtpassword.setText("0000");
+            txtpassword.setForeground(new Color(153,153,153));
+        }
+    }//GEN-LAST:event_txtpasswordFocusLost
 
     /**
      * @param args the command line arguments
