@@ -132,25 +132,30 @@ public class TransaksiPenjualan extends javax.swing.JFrame {
         txtTotalBayar.setText(null);
     }
     
-    public void datatabel(){
-        Object[] Baris = {"No","ID Barang","Nama Barang","Harga Satuan","Jumlah","Total"};
-        tabmode = new DefaultTableModel(null, Baris);
-        keranjang.setModel(tabmode);
-        String sql = "select * from tblkeranjang order by id_barang asc";
-        try{
-            java.sql.Statement stat = conn.createStatement();
-            ResultSet hasil = stat.executeQuery(sql);
-            while (hasil.next()){
-                String idbar = hasil.getString("id_barang");
-                String nama = hasil.getString("nama_barang");
-                String harga = hasil.getString("harga_satuan");
-                String jumlah = hasil.getString("jumlah_beli");
-                String total = hasil.getString("total_bayar");
-                String[] data = {"",idbar,nama,harga,jumlah,total};
-                tabmode.addRow(data);
-                NoTable();
+ public void datatabel(){
+      DefaultTableModel tbl = new DefaultTableModel();
+        tbl.addColumn("kode penjualan");
+        tbl.addColumn("Id barang");
+        tbl.addColumn("Nama barang");
+        tbl.addColumn("harga satuan");
+        tbl.addColumn("Jumlah");
+        tbl.addColumn("Total harga");
+        keranjang.setModel(tbl);
+        try {
+            Statement statement = (Statement) Connectionz.GetConnection().createStatement();
+            ResultSet res = statement.executeQuery("select * from tblkeranjang");
+            while (res.next()) {
+                tbl.addRow(new Object[]{
+                    res.getString("kode_penjualan"),
+                    res.getString("id_barang"),
+                    res.getString("nama_barang"),
+                    res.getString("harga_satuan"),
+                    res.getString("jumlah"),
+                    res.getString("total_harga"),});
+                keranjang.setModel(tbl);
             }
-        } catch (Exception e){
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane, "salah");
         }
     }
     
@@ -533,53 +538,26 @@ public class TransaksiPenjualan extends javax.swing.JFrame {
     }//GEN-LAST:event_txtKembalianActionPerformed
 
     private void btnTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahActionPerformed
-        // TODO add your handling code here:
-        //if(txtKodePenjualan.getText().equals("")){
-            //JOptionPane.showMessageDialog(null, "Kode tidak boleh kosong");
-            //txtKodePenjualan.requestFocus();
-        /*} else*/ if(txtIDBarang.getText().equals("")){
-            JOptionPane.showMessageDialog(null, "ID tidak boleh kosong");
-            txtIDBarang.requestFocus();
-        } else if (txtNamaBarang.getText().equals("")){
-            JOptionPane.showMessageDialog(null, "Nama Barang tidak boleh kosong");
-            txtNamaBarang.requestFocus();
-        } else if (txtHargaSatuan.getText().equals("")){
-            JOptionPane.showMessageDialog(null, "Harga tidak boleh kosong");
-            txtHargaSatuan.requestFocus();
-        } else if (txtJumlah.getText().equals("")){
-            JOptionPane.showMessageDialog(null, "Qty tidak boleh kosong");
-            txtJumlah.requestFocus();
-        } else if (txtTotalBayar.getText().equals("")){
-            JOptionPane.showMessageDialog(null, "Total tidak boleh kosong");
-            txtTotalBayar.requestFocus();
-        }else {
-        String sql = "insert into tblkeranjang values (?,?,?,?,?)";
-        String tampilan = "dd-MM-yyyy";
-        SimpleDateFormat fm = new SimpleDateFormat(tampilan);
-        String tanggal = String.valueOf(fm.format(btn_tanggal.getDate()));
-        try {
-            PreparedStatement stat = Connectionz.GetConnection().prepareStatement(sql);
-            //PreparedStatement stat = conn.prepareStatement(sql);
-            //stat.setString(1, tanggal.toString());
-            //stat.setString(2, txtKodePenjualan.getText());
-            stat.setString(1, txtIDBarang.getText());
-            stat.setString(2, txtNamaBarang.getText());
-            stat.setString(3, txtHargaSatuan.getText());
-            stat.setString(4, txtJumlah.getText());
-            stat.setString(5, txtTotalBayar.getText());
-            stat.executeUpdate();
-            JOptionPane.showMessageDialog(null,"Data Berhasil Ditambah");
-            autoKdPenjualan();
-            kosong();
-            datatabel();
-            lebarKolom();
-            txtKodePenjualan.setEnabled(true);
-            txtIDBarang.setEnabled(true);
-            txtKodePenjualan.requestFocus();
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Data Gagal Ditambah"+e);
-        } 
-        }
+ String kode_penjualan = txtKodePenjualan.getText();
+        String  id_barang = txtIDBarang.getText();
+        String nama_barang = txtNamaBarang.getText();
+        String harga_satuan = txtHargaSatuan.getText();
+        String Jumlah = txtJumlah.getText();
+        String total_harga = txtTotalBayar.getText();
+   
+        
+        
+      
+          try {
+                Statement statement  = (Statement) Connectionz.GetConnection().createStatement();
+                statement.executeUpdate("INSERT INTO tblkeranjang VALUE ('" + kode_penjualan + "','" + id_barang + "','" + nama_barang + "','" + harga_satuan+ "','" + Jumlah + "','" +total_harga+ "');");
+           statement.close();
+           JOptionPane.showMessageDialog(null, "Data berhasil disimpan");
+            }catch (Exception e){
+                JOptionPane.showMessageDialog(null, "Data berhasil di simpan");
+            }
+            
+    datatabel();
     }//GEN-LAST:event_btnTambahActionPerformed
 
     private void txtNamaBarangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNamaBarangActionPerformed
