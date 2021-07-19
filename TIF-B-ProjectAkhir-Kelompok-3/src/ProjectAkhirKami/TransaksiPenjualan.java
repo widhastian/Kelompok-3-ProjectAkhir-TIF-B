@@ -427,6 +427,9 @@ public class TransaksiPenjualan extends javax.swing.JFrame {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtJumlahKeyPressed(evt);
             }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtJumlahKeyReleased(evt);
+            }
         });
         jPanel1.add(txtJumlah, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 290, 200, -1));
 
@@ -606,6 +609,20 @@ public class TransaksiPenjualan extends javax.swing.JFrame {
             total();
         }
     }//GEN-LAST:event_txtJumlahKeyPressed
+
+    private void txtJumlahKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtJumlahKeyReleased
+        // TODO add your handling code here:
+        if(!txtJumlah.equals("") && !txtHargaSatuan.equals("")){
+            int hargabr =  Integer.parseInt(txtHargaSatuan.getText());
+            int jml =  Integer.parseInt(txtJumlah.getText());
+            int result = jml*hargabr;
+            String hasil = String.valueOf(result);
+            txtTotalBayar.setText(hasil);
+        } else {
+            
+            txtTotalBayar.setText(null);
+        }
+    }//GEN-LAST:event_txtJumlahKeyReleased
 
     /**
      * @param args the command line arguments
