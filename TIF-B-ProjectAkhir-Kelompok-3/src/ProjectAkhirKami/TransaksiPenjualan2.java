@@ -21,9 +21,11 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import koneksi.Connectionz;
+import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -340,6 +342,9 @@ public class TransaksiPenjualan2 extends javax.swing.JFrame {
         txtJumlah.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtJumlahKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtJumlahKeyReleased(evt);
             }
         });
 
@@ -669,7 +674,7 @@ public class TransaksiPenjualan2 extends javax.swing.JFrame {
 
     private void btnbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbackActionPerformed
         // TODO add your handling code here:
-        Admin Login=new Admin();
+        Pegawai Login=new Pegawai();
         Login.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnbackActionPerformed
@@ -848,7 +853,27 @@ public class TransaksiPenjualan2 extends javax.swing.JFrame {
 
     private void btnCetakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCetakActionPerformed
         // TODO add your handling code here:
+        try {
+        JasperPrint jp = JasperFillManager.fillReport(getClass().getResourceAsStream("reportstruk.jasper"), null, Connectionz.GetConnection());
+        JasperViewer.viewReport(jp, false);
+        } catch(Exception e) {
+            JOptionPane.showMessageDialog(rootPane, e);
+        }
     }//GEN-LAST:event_btnCetakActionPerformed
+
+    private void txtJumlahKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtJumlahKeyReleased
+        // TODO add your handling code here:
+            if(!txtJumlah.equals("") && !txtHargaSatuan.equals("")){
+            int hargabr =  Integer.parseInt(txtHargaSatuan.getText());
+            int jml =  Integer.parseInt(txtJumlah.getText());
+            int result = jml*hargabr;
+            String hasil = String.valueOf(result);
+            txtTotalBayar.setText(hasil);
+        } else {
+            
+            txtTotalBayar.setText(null);
+        }
+    }//GEN-LAST:event_txtJumlahKeyReleased
 
     /**
      * @param args the command line arguments

@@ -119,7 +119,7 @@ public class Nota extends javax.swing.JFrame {
     private void btnCetakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCetakActionPerformed
         // TODO add your handling code here:
         try {
-        JasperPrint jp = JasperFillManager.fillReport(getClass().getResourceAsStream("LaporanPenjualan.jasper"), null, Connectionz.GetConnection());
+        JasperPrint jp = JasperFillManager.fillReport(getClass().getResourceAsStream("laporanpenjualantblpnj.jasper"), null, Connectionz.GetConnection());
         JasperViewer.viewReport(jp, false);
         } catch(Exception e) {
             JOptionPane.showMessageDialog(rootPane, e);
