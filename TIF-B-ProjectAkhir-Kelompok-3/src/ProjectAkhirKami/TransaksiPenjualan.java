@@ -693,6 +693,22 @@ public class TransaksiPenjualan extends javax.swing.JFrame {
 
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
         // TODO add your handling code here:
+         try{
+            String clear = "TRUNCATE `tblkeranjang`";
+            Connection connect = Connectionz.GetConnection();
+            PreparedStatement ps = (PreparedStatement) connect.prepareStatement(clear);
+            ps.execute();
+            //            keranjang();
+
+        }catch(Exception e){
+            System.out.println(e);
+        }finally{
+            datatabel();
+            kosong();
+            txtuangbayar.setText(null);
+            txtuangkembalian.setText(null);
+            txttotal.setText(null);
+        }        
         
     }//GEN-LAST:event_btnResetActionPerformed
 
