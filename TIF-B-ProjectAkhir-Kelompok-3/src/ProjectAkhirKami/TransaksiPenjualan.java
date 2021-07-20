@@ -100,7 +100,7 @@ public class TransaksiPenjualan extends javax.swing.JFrame {
     public void outosum(){
         int total = 0;
         for (int i =0; i < keranjang.getRowCount();i++){
-        int amount = Integer.parseInt((String)keranjang.getValueAt(i, 3));
+        int amount = Integer.parseInt((String)keranjang.getValueAt(i, 5));
         total +=amount;
         }
         txttotal.setText(""+total);
