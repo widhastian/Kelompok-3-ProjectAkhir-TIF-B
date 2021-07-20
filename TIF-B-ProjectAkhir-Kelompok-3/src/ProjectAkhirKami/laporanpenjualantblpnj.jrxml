@@ -34,31 +34,24 @@
 	<title>
 		<band height="132" splitType="Stretch">
 			<frame>
-				<reportElement uuid="5563cf05-f39b-47de-9e26-71f1fac10646" mode="Opaque" x="0" y="0" width="555" height="95" backcolor="#000000"/>
+				<reportElement mode="Opaque" x="0" y="0" width="499" height="95" backcolor="#000000" uuid="5563cf05-f39b-47de-9e26-71f1fac10646"/>
 				<staticText>
-					<reportElement uuid="652e85ae-02aa-4fd6-b027-ea0b60ac6a0c" style="Title" x="0" y="0" width="370" height="66"/>
-					<textElement>
-						<font isBold="false"/>
+					<reportElement style="Title" x="2" y="0" width="370" height="66" uuid="652e85ae-02aa-4fd6-b027-ea0b60ac6a0c"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Eras Bold ITC" size="38" isBold="false"/>
 					</textElement>
-					<text><![CDATA[Cherry Title]]></text>
+					<text><![CDATA[Laporan Penjualan]]></text>
 				</staticText>
 				<staticText>
-					<reportElement uuid="2a39dc25-5848-43b1-8500-b133c8bbbe6c" style="SubTitle" x="157" y="66" width="249" height="29"/>
-					<textElement>
-						<font size="22" isBold="false"/>
+					<reportElement style="SubTitle" x="292" y="66" width="207" height="29" uuid="2a39dc25-5848-43b1-8500-b133c8bbbe6c"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Eras Demi ITC" size="24" isBold="false"/>
 					</textElement>
-					<text><![CDATA[Cherry SubTitle]]></text>
+					<text><![CDATA[Ilnaa Collection]]></text>
 				</staticText>
 			</frame>
 			<frame>
-				<reportElement uuid="c04f4bdd-24d5-4c51-8474-7d43b1c648ef" mode="Opaque" x="0" y="100" width="555" height="32" forecolor="#000000" backcolor="#CC0000"/>
-				<textField pattern="EEEEE dd MMMMM yyyy">
-					<reportElement uuid="b731e572-9a18-46f3-a96e-3d5c6323425b" x="307" y="12" width="144" height="20" forecolor="#FFFFFF"/>
-					<textElement textAlignment="Right">
-						<font size="12"/>
-					</textElement>
-					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
-				</textField>
+				<reportElement mode="Opaque" x="0" y="100" width="499" height="32" forecolor="#000000" backcolor="#CC0000" uuid="c04f4bdd-24d5-4c51-8474-7d43b1c648ef"/>
 			</frame>
 		</band>
 	</title>
@@ -66,76 +59,82 @@
 		<band splitType="Stretch"/>
 	</pageHeader>
 	<columnHeader>
-		<band height="26" splitType="Stretch">
+		<band height="19" splitType="Stretch">
 			<staticText>
-				<reportElement uuid="0202311e-5ea1-4282-bedf-7084cd7d7d09" style="Column header" x="0" y="7" width="138" height="18" forecolor="#000000"/>
+				<reportElement style="Column header" x="1" y="-22" width="138" height="18" forecolor="#000000" uuid="0202311e-5ea1-4282-bedf-7084cd7d7d09"/>
 				<textElement>
 					<font isBold="false"/>
 				</textElement>
-				<text><![CDATA[kode_penjualan]]></text>
+				<text><![CDATA[Kode Penjualan]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="38e23ed8-c068-415b-8979-d4a49dc089b7" style="Column header" x="138" y="7" width="138" height="18" forecolor="#000000"/>
+				<reportElement style="Column header" x="138" y="-22" width="138" height="18" forecolor="#000000" uuid="38e23ed8-c068-415b-8979-d4a49dc089b7"/>
 				<textElement>
 					<font isBold="false"/>
 				</textElement>
-				<text><![CDATA[tgl_transaksi]]></text>
+				<text><![CDATA[Tanggal Transaksi]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="78f2f960-bda4-4b75-9f43-7cfb101737eb" style="Column header" x="276" y="7" width="138" height="18" forecolor="#000000"/>
+				<reportElement style="Column header" x="276" y="-22" width="138" height="18" forecolor="#000000" uuid="78f2f960-bda4-4b75-9f43-7cfb101737eb"/>
 				<textElement>
 					<font isBold="false"/>
 				</textElement>
-				<text><![CDATA[total_transaksi]]></text>
+				<text><![CDATA[Total Transaksi]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="63df289b-10f1-4e35-92dc-7e1ef32778ac" style="Column header" x="414" y="7" width="138" height="18" forecolor="#000000"/>
+				<reportElement style="Column header" x="414" y="-22" width="85" height="18" forecolor="#000000" uuid="63df289b-10f1-4e35-92dc-7e1ef32778ac"/>
 				<textElement>
 					<font isBold="false"/>
 				</textElement>
-				<text><![CDATA[id_user]]></text>
+				<text><![CDATA[ID User]]></text>
 			</staticText>
+			<line>
+				<reportElement x="2" y="0" width="497" height="1" uuid="062b6d83-46ae-4eb4-b45a-15cbaedd0c86"/>
+			</line>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" positionType="Float" x="429" y="1" width="61" height="18" uuid="e7f5bd17-217a-416c-b53f-cb5725e4582d"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{id_user}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" positionType="Float" x="311" y="1" width="44" height="18" uuid="5db94d46-b945-4e68-adab-f4195332199b"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{total_transaksi}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" positionType="Float" x="151" y="0" width="95" height="18" uuid="8ee55195-504b-4fd1-b74c-17ce0fe27eb0"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tgl_transaksi}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" positionType="Float" x="27" y="0" width="66" height="18" uuid="b69579cf-a959-4848-afef-97bf7e4fcc70"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{kode_penjualan}]]></textFieldExpression>
+			</textField>
 		</band>
 	</columnHeader>
 	<detail>
 		<band height="18" splitType="Stretch">
 			<frame>
-				<reportElement uuid="6f04076f-5d28-47b1-be2d-1a329d45eb43" style="Row" mode="Opaque" x="0" y="0" width="555" height="18"/>
-				<textField isStretchWithOverflow="true">
-					<reportElement uuid="b69579cf-a959-4848-afef-97bf7e4fcc70" style="Detail" positionType="Float" x="0" y="0" width="138" height="18"/>
-					<textElement>
-						<font size="14"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$F{kode_penjualan}]]></textFieldExpression>
-				</textField>
-				<textField isStretchWithOverflow="true">
-					<reportElement uuid="8ee55195-504b-4fd1-b74c-17ce0fe27eb0" style="Detail" positionType="Float" x="138" y="0" width="138" height="18"/>
-					<textElement>
-						<font size="14"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$F{tgl_transaksi}]]></textFieldExpression>
-				</textField>
-				<textField isStretchWithOverflow="true">
-					<reportElement uuid="5db94d46-b945-4e68-adab-f4195332199b" style="Detail" positionType="Float" x="276" y="0" width="138" height="18"/>
-					<textElement>
-						<font size="14"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$F{total_transaksi}]]></textFieldExpression>
-				</textField>
-				<textField isStretchWithOverflow="true">
-					<reportElement uuid="e7f5bd17-217a-416c-b53f-cb5725e4582d" style="Detail" positionType="Float" x="414" y="0" width="138" height="18"/>
-					<textElement>
-						<font size="14"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$F{id_user}]]></textFieldExpression>
-				</textField>
+				<reportElement style="Row" mode="Opaque" x="0" y="0" width="555" height="18" uuid="6f04076f-5d28-47b1-be2d-1a329d45eb43"/>
+				<line>
+					<reportElement x="0" y="0" width="499" height="2" uuid="471275f6-57e5-4c93-96b1-62ccbbf909a5"/>
+				</line>
 			</frame>
 		</band>
 	</detail>
 	<columnFooter>
-		<band height="7" splitType="Stretch">
+		<band height="6" splitType="Stretch">
 			<line>
-				<reportElement uuid="a440296a-705f-4229-bce7-52917ad5e5fa" positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1"/>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="a440296a-705f-4229-bce7-52917ad5e5fa"/>
 				<graphicElement>
 					<pen lineWidth="0.5" lineColor="#999999"/>
 				</graphicElement>
@@ -145,23 +144,23 @@
 	<pageFooter>
 		<band height="25" splitType="Stretch">
 			<frame>
-				<reportElement uuid="86b4155a-41d2-49a0-bd5c-2efee4349bc6" mode="Opaque" x="0" y="1" width="555" height="24" forecolor="#D0B48E" backcolor="#000000"/>
+				<reportElement mode="Opaque" x="0" y="1" width="555" height="24" forecolor="#D0B48E" backcolor="#000000" uuid="86b4155a-41d2-49a0-bd5c-2efee4349bc6"/>
 				<textField evaluationTime="Report">
-					<reportElement uuid="7d52c2e8-99bb-4f53-b0ab-4bc9b0f65e61" style="Column header" x="513" y="0" width="40" height="20" forecolor="#FFFFFF"/>
+					<reportElement style="Column header" x="513" y="0" width="40" height="20" forecolor="#FFFFFF" uuid="7d52c2e8-99bb-4f53-b0ab-4bc9b0f65e61"/>
 					<textElement verticalAlignment="Middle">
 						<font size="10" isBold="false"/>
 					</textElement>
 					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement uuid="6b81d09b-c39c-43c8-a0e2-16d297644b54" style="Column header" x="433" y="0" width="80" height="20" forecolor="#FFFFFF"/>
+					<reportElement style="Column header" x="433" y="0" width="80" height="20" forecolor="#FFFFFF" uuid="6b81d09b-c39c-43c8-a0e2-16d297644b54"/>
 					<textElement textAlignment="Right" verticalAlignment="Middle">
 						<font size="10" isBold="false"/>
 					</textElement>
 					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
 				</textField>
 				<textField pattern="EEEEE dd MMMMM yyyy">
-					<reportElement uuid="2d08d56c-e153-403c-958e-70582358fd15" style="Column header" x="2" y="1" width="197" height="20" forecolor="#FFFFFF"/>
+					<reportElement style="Column header" x="2" y="4" width="197" height="20" forecolor="#FFFFFF" uuid="2d08d56c-e153-403c-958e-70582358fd15"/>
 					<textElement verticalAlignment="Middle">
 						<font size="10" isBold="false"/>
 					</textElement>
