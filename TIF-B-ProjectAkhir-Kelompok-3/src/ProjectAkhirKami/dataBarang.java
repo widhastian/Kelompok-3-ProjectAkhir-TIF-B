@@ -233,6 +233,11 @@ public class dataBarang extends javax.swing.JFrame {
         });
 
         txtStok.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtStok.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtStokActionPerformed(evt);
+            }
+        });
 
         txtCari.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         txtCari.setForeground(new java.awt.Color(153, 153, 153));
@@ -608,6 +613,10 @@ public class dataBarang extends javax.swing.JFrame {
             txtCari.setForeground(new Color(153,153,153));
         }
     }//GEN-LAST:event_txtCariFocusLost
+
+    private void txtStokActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtStokActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtStokActionPerformed
 
     /**
      * @param args the command line arguments

@@ -661,6 +661,7 @@ public class TransaksiPenjualan extends javax.swing.JFrame {
             int hargabr =  Integer.parseInt(txtHargaSatuan.getText());
             int jml =  Integer.parseInt(txtJumlah.getText());
             int result = jml*hargabr;
+             
             String hasil = String.valueOf(result);
             txtTotalBayar.setText(hasil);
         } else {
