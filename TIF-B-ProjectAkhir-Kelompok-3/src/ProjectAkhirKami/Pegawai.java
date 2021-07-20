@@ -161,7 +161,7 @@ public class Pegawai extends javax.swing.JFrame {
 
     private void btnTransaksiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTransaksiActionPerformed
         // TODO add your handling code here:
-        TransaksiPenjualan login=new TransaksiPenjualan();
+        TransaksiPenjualan2 login=new TransaksiPenjualan2();
         login.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnTransaksiActionPerformed
