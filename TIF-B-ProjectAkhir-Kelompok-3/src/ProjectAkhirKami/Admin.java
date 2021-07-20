@@ -41,7 +41,6 @@ public Admin(String username) {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        btnTransaksiMasuk = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -109,15 +108,6 @@ public Admin(String username) {
         jLabel4.setFont(new java.awt.Font("Tahoma", 2, 16)); // NOI18N
         jLabel4.setText("Ilnaa Collection");
 
-        btnTransaksiMasuk.setBackground(new java.awt.Color(231, 152, 174));
-        btnTransaksiMasuk.setFont(new java.awt.Font("Tahoma", 1, 39)); // NOI18N
-        btnTransaksiMasuk.setText("Transaksi Barang Masuk");
-        btnTransaksiMasuk.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnTransaksiMasukActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -144,9 +134,7 @@ public Admin(String username) {
                             .addComponent(btnBarang, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnUser, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(132, 132, 132))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(btnTransaksiPenjualan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnTransaksiMasuk, javax.swing.GroupLayout.PREFERRED_SIZE, 527, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(btnTransaksiPenjualan, javax.swing.GroupLayout.PREFERRED_SIZE, 527, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(219, 219, 219))
         );
         jPanel1Layout.setVerticalGroup(
@@ -163,9 +151,7 @@ public Admin(String username) {
                 .addComponent(btnSuplier)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnTransaksiPenjualan, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnTransaksiMasuk, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(110, 110, 110)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -229,13 +215,6 @@ public Admin(String username) {
         this.dispose();
     }//GEN-LAST:event_btnSuplierActionPerformed
 
-    private void btnTransaksiMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTransaksiMasukActionPerformed
-        // TODO add your handling code here:
-        TransaksiBarangMasuk b=new TransaksiBarangMasuk();
-        b.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_btnTransaksiMasukActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -276,7 +255,6 @@ public Admin(String username) {
     private javax.swing.JButton btnBackAdmin;
     private javax.swing.JButton btnBarang;
     private javax.swing.JButton btnSuplier;
-    private javax.swing.JButton btnTransaksiMasuk;
     private javax.swing.JButton btnTransaksiPenjualan;
     private javax.swing.JButton btnUser;
     private javax.swing.JLabel jLabel2;

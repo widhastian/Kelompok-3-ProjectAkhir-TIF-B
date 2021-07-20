@@ -176,7 +176,7 @@ public class Pegawai extends javax.swing.JFrame {
 
     private void btnBarangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBarangActionPerformed
         // TODO add your handling code here:
-        TransaksiBarangMasuk b = new TransaksiBarangMasuk();
+        dataBarang2 b = new dataBarang2();
         b.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnBarangActionPerformed

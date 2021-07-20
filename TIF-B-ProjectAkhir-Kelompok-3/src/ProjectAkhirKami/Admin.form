@@ -70,10 +70,7 @@
                           </Group>
                           <EmptySpace min="-2" pref="132" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="103" alignment="1" groupAlignment="1" max="-2" attributes="0">
-                          <Component id="btnTransaksiPenjualan" max="32767" attributes="0"/>
-                          <Component id="btnTransaksiMasuk" min="-2" pref="527" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="btnTransaksiPenjualan" min="-2" pref="527" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="219" max="-2" attributes="0"/>
               </Group>
@@ -93,9 +90,7 @@
                   <Component id="btnSuplier" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="btnTransaksiPenjualan" min="-2" pref="81" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="btnTransaksiMasuk" min="-2" pref="83" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="110" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jLabel2" alignment="1" min="-2" max="-2" attributes="0"/>
                       <Group type="102" alignment="1" attributes="0">
@@ -231,20 +226,6 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Ilnaa Collection"/>
           </Properties>
-        </Component>
-        <Component class="javax.swing.JButton" name="btnTransaksiMasuk">
-          <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ae" green="98" red="e7" type="rgb"/>
-            </Property>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="39" style="1"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Transaksi Barang Masuk"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnTransaksiMasukActionPerformed"/>
-          </Events>
         </Component>
       </SubComponents>
     </Container>
