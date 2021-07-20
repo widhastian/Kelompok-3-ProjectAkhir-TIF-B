@@ -24,18 +24,18 @@ FROM
 			<frame>
 				<reportElement mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#006699" uuid="7b2f59c8-1445-47b2-aa3a-5addaa8085ac"/>
 				<staticText>
-					<reportElement x="20" y="20" width="234" height="43" forecolor="#FFFFFF" uuid="8ff3e012-9c36-44f4-af87-43f9b0450c33"/>
-					<textElement>
-						<font size="34" isBold="true"/>
+					<reportElement x="20" y="20" width="276" height="43" forecolor="#FFFFFF" uuid="8ff3e012-9c36-44f4-af87-43f9b0450c33"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Eras Bold ITC" size="30" isBold="true"/>
 					</textElement>
-					<text><![CDATA[Barang]]></text>
+					<text><![CDATA[Ilnaa Collection]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="395" y="43" width="180" height="20" forecolor="#FFFFFF" uuid="a77d679a-7f38-415c-8b71-0a3f90b2d723"/>
-					<textElement textAlignment="Right">
-						<font size="14" isBold="false"/>
+					<reportElement x="395" y="63" width="180" height="20" forecolor="#FFFFFF" uuid="a77d679a-7f38-415c-8b71-0a3f90b2d723"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Eras Demi ITC" size="16" isBold="false"/>
 					</textElement>
-					<text><![CDATA[Laporan]]></text>
+					<text><![CDATA[Laporan Barang]]></text>
 				</staticText>
 			</frame>
 		</band>
