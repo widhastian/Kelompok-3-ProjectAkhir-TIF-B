@@ -606,6 +606,7 @@ public class TransaksiPenjualan extends javax.swing.JFrame {
             }
             
     datatabel();
+    lebarKolom();
     }//GEN-LAST:event_btnTambahActionPerformed
 
     private void txtNamaBarangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNamaBarangActionPerformed
