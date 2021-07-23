@@ -805,6 +805,7 @@ public class TransaksiPenjualan2 extends javax.swing.JFrame {
             txtuangbayar.setText(null);
             txtuangkembalian.setText(null);
             txttotal.setText(null);
+            lebarKolom();
         }
 
     }//GEN-LAST:event_btnResetActionPerformed
